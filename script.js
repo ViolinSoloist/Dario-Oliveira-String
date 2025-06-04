@@ -222,7 +222,7 @@ function carregarTeachingPriorities() {
 
     const Video = document.createElement('iframe');
     Video.id = "ytvideo";
-    Video.src = "https://www.youtube.com/embed/N-CMq8Anfug?autoplay=1";
+    Video.src = "https://www.youtube.com/embed/N-CMq8Anfug";
     Video.classList.add("video");
 
     main.appendChild(Title);
@@ -243,7 +243,8 @@ function carregarPerformance() {
     const Video = document.createElement("video");
     Video.src = "src/performance.mp4";
     Video.classList.add("video","circle-video");
-    Video.autoplay = true;
+    Video.controls = true;
+    // Video.autoplay = true;
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
@@ -279,7 +280,7 @@ function carregarGroupClass() {
     contact.style.filter = "brightness(100%)";
 
     const Video = document.createElement("iframe");
-    Video.src = "https://www.youtube.com/embed/cfHJ5AWJ6Kw?autoplay=1";
+    Video.src = "https://www.youtube.com/embed/cfHJ5AWJ6Kw";
     Video.id="ytvideo2";
 
     const Artc = document.createElement("article");
@@ -321,7 +322,6 @@ function carregarViolinLesson() {
     const Video = document.createElement("video");
     Video.src = "src/virtual_lessons.mp4";
     Video.classList.add("video");
-    Video.autoplay = true;
     Video.controls = true;
 
     Video.style.width = "42%";
@@ -450,7 +450,7 @@ function isContactVisible() {
 document.addEventListener('mousemove', (e) => {
     const fromBottom = window.innerHeight - e.clientY;
 
-    if (isContactVisible() && fromBottom < 40) {
+    if (isContactVisible() && fromBottom < 100) {
         contactFooter.classList.add('visible');
     } else {
         contactFooter.classList.remove('visible');
