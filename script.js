@@ -323,6 +323,7 @@ function carregarViolinLesson() {
     Video.src = "src/virtual_lessons.mp4";
     Video.classList.add("video");
     Video.controls = true;
+    Video.autoplay = true;
 
     Video.style.width = "42%";
     Video.style.position = "fixed";
