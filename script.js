@@ -222,7 +222,7 @@ function carregarTeachingPriorities() {
 
     const Video = document.createElement('iframe');
     Video.id = "ytvideo";
-    Video.src = "https://www.youtube.com/embed/N-CMq8Anfug";
+    Video.src = "https://www.youtube.com/embed/N-CMq8Anfug?autoplay=1";
     Video.classList.add("video");
 
     main.appendChild(Title);
@@ -243,8 +243,8 @@ function carregarPerformance() {
     const Video = document.createElement("video");
     Video.src = "src/performance.mp4";
     Video.classList.add("video","circle-video");
-    Video.controls = true;
-    // Video.autoplay = true;
+    // Video.controls = true;
+    Video.autoplay = true;
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
@@ -280,7 +280,7 @@ function carregarGroupClass() {
     contact.style.filter = "brightness(100%)";
 
     const Video = document.createElement("iframe");
-    Video.src = "https://www.youtube.com/embed/cfHJ5AWJ6Kw";
+    Video.src = "https://www.youtube.com/embed/cfHJ5AWJ6Kw?autoplay=1";
     Video.id="ytvideo2";
 
     const Artc = document.createElement("article");
