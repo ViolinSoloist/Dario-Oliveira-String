@@ -249,19 +249,112 @@ function carregarTestimony() {
     contact.style.filter = "brightness(100%)";
 
     const Title = document.createElement('p');
-    Title.classList.add("title","teachingTitle");
-    Title.innerText = "Students Testimony";
-    Title.style.position = "fixed";
-    Title.style.top = "140px";
-    Title.style.minWidth = "440px";
+    Title.classList.add("title", "teachingTitle");
+    Title.id = "testimony-page-title-mobile";
+    Title.innerText = "Students & Parents Stories"; 
+    Title.style.position = "relative";
+    Title.style.marginTop = "120px";
+    Title.style.marginBottom = "30px";
+    Title.style.textAlign = "center";
+    Title.style.width = "100%";
 
-    // const Video = document.createElement('iframe');
-    // Video.id = "ytvideo";
-    // Video.src = "https://www.youtube.com/embed/N-CMq8Anfug?autoplay=1";
-    // Video.classList.add("video");
+    // carousel vs carrossel vs carrocel vs karrosel vs carroçel ????
+    const carouselContainer = document.createElement('div');
+    carouselContainer.classList.add('carousel-container');
+
+    // prev
+    const prevBtn = document.createElement('button');
+    prevBtn.classList.add('carousel-btn', 'prev-btn');
+    prevBtn.innerHTML = '&#10094;'; // simbolo seta esquerda
+
+    // next
+    const nextBtn = document.createElement('button');
+    nextBtn.classList.add('carousel-btn', 'next-btn');
+    nextBtn.innerHTML = '&#10095;'; // simbolo seta direita
+
+    // area slide
+    const track = document.createElement('div');
+    track.classList.add('carousel-track');
+
+    // -----------------------------------------------------
+    // --- DADOS DOS DEPOIMENTOS (ADICIONAR MAIS DEPOIS) ---
+    // -----------------------------------------------------
+
+    const testimonials = [
+        {
+            type: 'image',
+            src: 'src/testimony1.jpeg',
+            caption: 'Results and progress celebration'
+        },
+        {
+            type: 'video', // ID = 78R6PEUmLVg
+            src: 'https://www.youtube.com/embed/78R6PEUmLVg', 
+            caption: 'Student Performance'
+        },
+        {
+            type: 'video', // ID = 7QmB36bMFYM
+            src: 'https://www.youtube.com/embed/7QmB36bMFYM',
+            caption: 'Lesson Moments'
+        }
+    ];
+
+    // gera slides dinamicamente, a partir do dicionário
+    testimonials.forEach((item) => {
+        const slide = document.createElement('div');
+        slide.classList.add('carousel-slide');
+
+        let content;
+        if (item.type === 'image') {
+            content = document.createElement('img');
+            content.src = item.src;
+            content.alt = "Testimonial Image";
+            content.classList.add('testimonial-media');
+        } else if (item.type === 'video') {
+            content = document.createElement('iframe');
+            content.src = item.src;
+            content.classList.add('testimonial-media');
+            content.setAttribute('allowfullscreen', '');
+            content.setAttribute('frameborder', '0');
+        }
+
+        const caption = document.createElement('p');
+        caption.classList.add('testimonial-caption');
+        caption.innerText = item.caption;
+
+        slide.appendChild(content);
+        slide.appendChild(caption);
+        track.appendChild(slide);
+    });
+
+    // HTML
+    carouselContainer.appendChild(prevBtn);
+    carouselContainer.appendChild(track);
+    carouselContainer.appendChild(nextBtn);
 
     main.appendChild(Title);
-    // main.appendChild(Video);
+    main.appendChild(carouselContainer);
+
+    // LÓGICA DO CARROSSEL
+    let currentIndex = 0;
+    const slides = track.children;
+    const totalSlides = slides.length;
+
+    function updateCarousel() {
+        // faz update do track e move pra mostrar o slide atual
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        // loop infinito com aritmética modular (AAAAAAAAAAAAA EUGÊNIO MASSA)
+        currentIndex = (currentIndex + 1) % totalSlides; 
+        updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        // mesma coisa só que ao contrário (AAAAAA n = a => n = a + kd em Z_d AAAAAAA)
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; 
+        updateCarousel();
+    });
 }
 
 function carregarPerformance() {
