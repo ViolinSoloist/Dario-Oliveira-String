@@ -286,6 +286,7 @@ button:hover {
 
 .description {
     padding-top: 15px;
+    padding-bottom: 25px;
     display: flex;
     align-items: flex-start;
     margin: 0;
@@ -383,6 +384,11 @@ button:hover {
     animation: slideTopDown 0.7s forwards;
 }
 
+.containerInfo:hover {
+    background-color: rgba(4, 140, 107, 0.6);
+    filter: brightness(110%);
+}
+
 .contentWrapper {
     flex: 1;
     display: flex;
@@ -392,6 +398,8 @@ button:hover {
 #containerSubtitle {
     text-align: center;
 }
+
+
 
 .logo {
     width: 40px;
@@ -467,41 +475,41 @@ button:hover {
   bottom: 0;
 }
 
-
-
-/* =========================================
-   ESTILOS APENAS PARA CELULAR 
-   ========================================= */
+/*
+=============
+PARA CELULAR 
+============= */
 @media only screen and (max-width: 768px) {
 
-    /* 1. Ajuste do Fundo e Scroll */
     body {
-        background-attachment: fixed; /* O fundo fica parado enquanto o conteúdo move */
+        background-attachment: fixed;
         background-size: cover;
         background-position: center;
-        height: 100%;
-        overflow-x: hidden; /* Evita scroll lateral indesejado */
+        min-height: 100vh;
+
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
     }
 
     main {
-        /* Transforma o main em uma coluna flexível para empilhar itens */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-bottom: 100px; 
-        padding-left: 3% !important;
+        padding-bottom: 40px; 
+        padding-left: 5% !important;
         width: 90%;
-        overflow-y: auto; /* Permite scroll vertical */
+        overflow-y: auto;
     }
 
-    /* 2. Ajuste do Menu (Header) */
+    /* menu (header) */
     nav {
         display: flex;
-        flex-wrap: wrap; /* Permite quebra de linha se necessário */
-        justify-content: center; /* Centraliza tudo */
-        gap: 5px; /* Espaço pequeno e uniforme entre os botões */
-        padding: 10px 5px; /* Padding reduzido nas laterais */
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: 5px;
+        padding: 10px 5px;
         width: 100%;
         box-sizing: border-box;
     }
@@ -529,7 +537,7 @@ button:hover {
     #intro {
         order: 1 !important;
         margin-top: 0 !important; /* margin=0 porque padding já dá espaço */
-        margin-bottom: 25px !important; 
+        margin-bottom: 30px !important; 
         position: relative !important;
         top: auto !important;
         transform: none !important; 
@@ -588,7 +596,7 @@ button:hover {
     /* 5. botão "next page" */
     button {
         order: 5 !important;
-        margin-bottom: 120px !important;
+        margin-bottom: 60px !important;
         padding: 10px 30px !important;
         font-size: 20px !important;
         display: block !important;
@@ -719,12 +727,13 @@ button:hover {
         width: 100% !important;
         height: auto !important;
         margin-top: 40px !important;
-        padding-bottom: 80px !important; 
-        gap: 30px !important;
+        padding-bottom: 50px !important; 
+        padding-left: 0;
+        gap: 40px !important;
     }
 
     .containerInfo {
-        width: 85% !important; /* para ver o fundo */
+        width: 80% !important; /* para ver o fundo */
         max-width: 350px !important; /* pra tablets? alguém ainda usa tablets hoje em dia pra navegar? */
         height: auto !important;
         min-height: auto !important; /* remover altura mínima fixa pra versão PC (se tiver)*/
@@ -827,7 +836,7 @@ ESTILOS MENU MOBILE (Hamburger)
         position: fixed;
         top: 0;
         right: 0; /* na direita */
-        width: 75%; /* 75% da width */
+        width: 80%;
         height: 100vh; /* altura total */
         background: linear-gradient(180deg, #3e5068 0%, #2c3e50 100%);
         z-index: 1002;
@@ -835,10 +844,12 @@ ESTILOS MENU MOBILE (Hamburger)
         transition: transform 0.3s ease-in-out;
         padding-top: 60px;
         box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        overflow-y: auto;
     }
 
     .mobile-sidebar.open {
         transform: translateX(0); /* desliza para dentro*/
+        overflow-y: auto;
     }
 
     /* fundo escuro */
@@ -883,9 +894,9 @@ ESTILOS MENU MOBILE (Hamburger)
 
     .mob-link {
         color: white;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 700;
-        padding: 15px 0;
+        padding: 13px 0; /* espaçamento entre os links*/
         border-bottom: 1px solid rgba(255,255,255,0.1);
         cursor: pointer;
         transition: color 0.2s;
@@ -913,5 +924,9 @@ ESTILOS MENU MOBILE (Hamburger)
     /* Classe para mostrar submenu ao clicar */
     .show-submenu {
         display: block;
+    }
+
+    #spacer {
+        height: clamp(30px, 60vw, 150px);
     }
 }

@@ -4,9 +4,10 @@ const main = document.getElementsByTagName("main")[0];
 const home = document.getElementsByClassName("navbtn")[0];
 const about = document.getElementsByClassName('navbtn')[1];
 const teaching = document.getElementsByClassName("navbtn")[2];
-const performances = document.getElementsByClassName("navbtn")[3];
-const resources = document.getElementsByClassName("navbtn")[4];
-const contact = document.getElementsByClassName("navbtn")[5];
+const testimony = document.getElementsByClassName("navbtn")[3];
+const performances = document.getElementsByClassName("navbtn")[4];
+const resources = document.getElementsByClassName("navbtn")[5];
+const contact = document.getElementsByClassName("navbtn")[6];
 
 //dropdown (teaching)
 const teachingWrapper = document.createElement('div');
@@ -19,7 +20,7 @@ teachingDropdown.className = 'teaching-dropdown';
 
 teachingDropdown.innerHTML = `
   <div class="dropdown-option" data-page="philosophy">Teaching Philosophy</div>
-  <div class="dropdown-option" data-page="priority">Teaching by Priority</div>
+  <div class="dropdown-option" data-page="priority">Teaching Overview</div>
 `;
 
 teachingWrapper.appendChild(teachingDropdown);
@@ -93,6 +94,7 @@ function carregarHome() {
     home.style.filter = `brightness(${brilho_inpage}%)`;
     about.style.filter = "brightness(100%)";
     teaching.style.filter = "brightness(100%)";
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
     resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
@@ -105,7 +107,7 @@ function carregarHome() {
     const Artc = document.createElement("article");
     Artc.innerHTML = `
         <p id="intro">Welcome To</p>
-        <p id="name">Dario Oliveira String</p>
+        <p id="name">Dario Oliveira</p>
         <p id="frase">Music for life: performing, teaching and inspiring</p>
         <button onclick="carregarAboutme()">Next page</button>
     `;
@@ -121,6 +123,7 @@ function carregarAboutme() {
     home.style.filter = "brightness(100%)";
     about.style.filter = `brightness(${brilho_inpage}%)`;
     teaching.style.filter = "brightness(100%)";
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
     resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
@@ -142,7 +145,9 @@ function carregarAboutme() {
 
     const Aboutmedescrp = document.createElement('p');
     Aboutmedescrp.classList.add('description');
-    Aboutmedescrp.innerText = `I’m Dario Oliveira Santos — violinist, violist, and passionate Suzuki educator dedicated to inspiring students and audiences through the power of music. With roots in Brazil and a journey that spans concert halls, classrooms, and communities across Brazil and the United States, my mission is simple: to share music that speaks to the soul and to nurture the next generation of musicians with heart, discipline, and joy. This space is a reflection of my life in music — a place where performance and pedagogy meet. Here, you’ll find resources for students, updates on upcoming performances, and insights into the Suzuki method and string teaching. Whether you’re a curious parent, a budding musician, or a music lover, I invite you to explore, listen, learn, and connect. Let’s make music together.`;
+    Aboutmedescrp.innerText = `
+    I’m Dario Oliveira Santos — violinist, violist, and passionate Suzuki educator dedicated to inspiring students and audiences through the power of music. With roots in Brazil and a journey that spans concert halls, classrooms, and communities across Brazil and the United States, my mission is simple: to share music that speaks to the soul and to nurture the next generation of musicians with heart, discipline, and joy. This space is a reflection of my life in music — a place where performance and pedagogy meet.
+    `;
 
     main.appendChild(Artc);
     main.appendChild(Img);
@@ -157,6 +162,7 @@ function carregarTeachingPhy() {
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
     teaching.style.filter = `brightness(${brilho_inpage}%)`;
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
     resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
@@ -209,13 +215,14 @@ function carregarTeachingPriorities() {
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
     teaching.style.filter = `brightness(${brilho_inpage}%)`;
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
     resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
     const Title = document.createElement('p');
     Title.classList.add("title","teachingTitle");
-    Title.innerText = "Teaching Priorities";
+    Title.innerText = "Teaching Overview";
     Title.style.position = "fixed";
     Title.style.top = "140px";
     Title.style.minWidth = "440px";
@@ -229,6 +236,34 @@ function carregarTeachingPriorities() {
     main.appendChild(Video);
 }
 
+function carregarTestimony() {
+    document.body.style.backgroundImage = 'url("src/fundo2.png")';
+    main.innerHTML = "";
+
+    home.style.filter = "brightness(100%)";
+    about.style.filter = "brightness(100%)";
+    teaching.style.filter = "brightness(100%)";
+    testimony.style.filter = `brightness(${brilho_inpage}%)`;
+    performances.style.filter = "brightness(100%)";
+    resources.style.filter = "brightness(100%)";
+    contact.style.filter = "brightness(100%)";
+
+    const Title = document.createElement('p');
+    Title.classList.add("title","teachingTitle");
+    Title.innerText = "Students Testimony";
+    Title.style.position = "fixed";
+    Title.style.top = "140px";
+    Title.style.minWidth = "440px";
+
+    // const Video = document.createElement('iframe');
+    // Video.id = "ytvideo";
+    // Video.src = "https://www.youtube.com/embed/N-CMq8Anfug?autoplay=1";
+    // Video.classList.add("video");
+
+    main.appendChild(Title);
+    // main.appendChild(Video);
+}
+
 function carregarPerformance() {
     document.body.style.backgroundImage = 'url("src/fundo2.png")';
     main.innerHTML = "";
@@ -236,6 +271,7 @@ function carregarPerformance() {
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
     teaching.style.filter = "brightness(100%)";
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = `brightness(${brilho_inpage}%)`;
     resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
@@ -275,6 +311,7 @@ function carregarGroupClass() {
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
     teaching.style.filter = "brightness(100%)";
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
     resources.style.filter = `brightness(${brilho_inpage}%)`;
     contact.style.filter = "brightness(100%)";
@@ -315,6 +352,7 @@ function carregarViolinLesson() {
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
     teaching.style.filter = "brightness(100%)";
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
     resources.style.filter = `brightness(${brilho_inpage}%)`;
     contact.style.filter = "brightness(100%)";
@@ -363,6 +401,7 @@ function carregarContato() {
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
     teaching.style.filter = "brightness(100%)";
+    testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
     resources.style.filter = "brightness(100%)";
     contact.style.filter = `brightness(${brilho_inpage}%)`;
@@ -430,6 +469,7 @@ function carregarContato() {
 
 home.addEventListener('click', carregarHome);
 about.addEventListener('click', carregarAboutme);
+testimony.addEventListener('click', carregarTestimony);
 performances.addEventListener('click', carregarPerformance);
 contact.addEventListener('click', carregarContato);
 
@@ -501,7 +541,7 @@ submenus.forEach(link => {
 
 // função auxiliar: navegar (ir para página clicada) e fechar o menu automaticamente
 // função chamada no HTML: onclick="triggerMobileNav('carregarHome')"
-function triggerMobileNav(functionName) {
+function triggerMobileNav(functionName) {   
     // função global existente (todas as funções estão num "array" window, DOM/heritage stuff and shit) (ex: carregarHome())
     if (typeof window[functionName] === "function") {
         window[functionName]();
