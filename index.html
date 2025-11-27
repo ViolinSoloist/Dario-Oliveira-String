@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
 </head>
 <body>
-    <nav>
+    <nav class="desktop-nav">
         <div class="navbtn" id="home">Home</div>
         <div class="navbtn" id="about">About</div>
         <div class="navbtn" id="teaching">Teaching</div>
@@ -17,9 +17,42 @@
         <div class="navbtn" id="resorces">Resources</div>
         <div class="navbtn" id="contact">Contact</div>
     </nav>
-    
-    <main>
 
+    <div class="mobile-menu-icon" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="mobile-sidebar" id="mobile-sidebar">
+        <div class="sidebar-header">
+            <span class="close-btn" id="close-sidebar">&times;</span>
+        </div>
+        <div class="sidebar-links">
+            <div class="mob-link" onclick="triggerMobileNav('carregarHome')">Home</div>
+            <div class="mob-link" onclick="triggerMobileNav('carregarAboutme')">About</div>
+            
+            <div class="mob-link has-submenu">Teaching ▾</div>
+            <div class="mob-submenu">
+                <div onclick="triggerMobileNav('carregarTeachingPhy')">Philosophy</div>
+                <div onclick="triggerMobileNav('carregarTeachingPriorities')">Priorities</div>
+            </div>
+
+            <div class="mob-link" onclick="triggerMobileNav('carregarPerformance')">Performance</div>
+            
+            <div class="mob-link has-submenu">Resources ▾</div>
+            <div class="mob-submenu">
+                <div onclick="triggerMobileNav('carregarGroupClass')">Group Class</div>
+                <div onclick="triggerMobileNav('carregarViolinLesson')">Violin Lesson</div>
+            </div>
+
+            <div class="mob-link" onclick="triggerMobileNav('carregarContato')">Contact</div>
+        </div>
+    </div>
+    
+    <div class="overlay-backdrop" id="overlay-backdrop"></div>
+
+    <main>
     </main>
 
     <script src="script.js"></script> 

@@ -8,7 +8,7 @@ const performances = document.getElementsByClassName("navbtn")[3];
 const resources = document.getElementsByClassName("navbtn")[4];
 const contact = document.getElementsByClassName("navbtn")[5];
 
-//Dropdown (teaching)
+//dropdown (teaching)
 const teachingWrapper = document.createElement('div');
 teachingWrapper.className = 'teaching-wrapper navbtn';
 teaching.replaceWith(teachingWrapper);
@@ -107,7 +107,7 @@ function carregarHome() {
         <p id="intro">Welcome To</p>
         <p id="name">Dario Oliveira String</p>
         <p id="frase">Music for life: performing, teaching and inspiring</p>
-        <button onclick="carregarAboutme()">Start Slide</button>
+        <button onclick="carregarAboutme()">Next page</button>
     `;
 
     main.appendChild(Img);
@@ -323,7 +323,6 @@ function carregarViolinLesson() {
     Video.src = "src/virtual_lessons.mp4";
     Video.classList.add("video");
     Video.controls = true;
-    Video.autoplay = true;
 
     Video.style.width = "42%";
     Video.style.position = "fixed";
@@ -457,3 +456,56 @@ document.addEventListener('mousemove', (e) => {
         contactFooter.classList.remove('visible');
     }
 });
+
+/*
+=====================
+LÓGICA DO MENU MOBILE
+===================== */
+
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const sidebar = document.getElementById('mobile-sidebar');
+const closeBtn = document.getElementById('close-sidebar');
+const backdrop = document.getElementById('overlay-backdrop');
+const submenus = document.querySelectorAll('.has-submenu');
+
+// abrir o menu mobile
+function openMenu() {
+    sidebar.classList.add('open');
+    backdrop.classList.add('active');
+}
+
+// fechar o menu mobile
+function closeMenu() {
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('active');
+}
+
+// event Listeners
+if(mobileBtn) mobileBtn.addEventListener('click', openMenu);
+if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+if(backdrop) backdrop.addEventListener('click', closeMenu);
+// ia botar a tecla "esc" mas eu lembrei que isso só apareceria pra usuários mobile...
+
+// lógica para abrir/fechar submenus (Teaching/Resources) dentro do menu lateral
+// "empurra" o resto ("insert" numa lista)
+submenus.forEach(link => {
+    link.addEventListener('click', () => {
+        const menu = link.nextElementSibling;
+        menu.classList.toggle('show-submenu');
+        // Muda a setinha (opcional)
+        link.textContent = link.textContent.includes('▾') 
+            ? link.textContent.replace('▾', '▴') 
+            : link.textContent.replace('▴', '▾');
+    });
+});
+
+// função auxiliar: navegar (ir para página clicada) e fechar o menu automaticamente
+// função chamada no HTML: onclick="triggerMobileNav('carregarHome')"
+function triggerMobileNav(functionName) {
+    // função global existente (todas as funções estão num "array" window, DOM/heritage stuff and shit) (ex: carregarHome())
+    if (typeof window[functionName] === "function") {
+        window[functionName]();
+    }
+    // fecha o menu mobile
+    closeMenu();
+}

@@ -489,8 +489,9 @@ button:hover {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-bottom: 100px; /* Espaço para o rodapé não cobrir conteúdo */
-        width: 100%;
+        padding-bottom: 100px; 
+        padding-left: 5% !important;
+        width: 90%;
         overflow-y: auto; /* Permite scroll vertical */
     }
 
@@ -505,44 +506,131 @@ button:hover {
         box-sizing: border-box;
     }
 
+    /* ==================================================
+    AJUSTES ESPECÍFICOS DA PÁGINA HOME (CELULAR)
+    ================================================== */
+
+    main {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding-top: 50px !important; 
+    }
+
+    /*
+    article precisa sumir pra que os filhos obedeçam a ordem do main 
+    pra poder usar ordem
+    */
+    article {
+        display: contents !important;
+    }
+
+    /* "Welcome To" (intro) */
+    #intro {
+        order: 1 !important;
+        margin-top: 0 !important; /* margin=0 porque padding já dá espaço */
+        margin-bottom: 25px !important; 
+        position: relative !important;
+        top: auto !important;
+        transform: none !important; 
+        opacity: 1 !important; 
+        animation: appear 1s forwards !important;
+        
+        margin-left: auto !important;
+        margin-right: auto !important;
+        /* não quebrar linha */
+        width: clamp(120px, 30%, 30%) !important; 
+        
+        display: block !important;
+    }
+
+    /* imagem prof circular*/
+    #dario {
+        order: 2 !important;
+        margin-top: 25px !important;
+        margin-bottom: 25px !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        
+        /* ajuste de tamanho da imagem para mobile */
+        max-width: 60vw !important;
+        height: auto !important;
+        /* sei lá o que isso faz, só sei que precisa */
+        display: block !important;
+    }
+
+    /* nome */
+    #name {
+        order: 3 !important;
+        animation: appear 1s forwards 0.2s !important;
+        transform: none !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+        font-size: 32px !important; 
+        width: 90% !important; 
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block !important;
+    }
+
+    /* (frase) */
+    #frase {
+        order: 4 !important;
+        margin-bottom: 40px !important;
+        text-align: center !important;
+        padding: 0 10px !important;
+        font-size: 16px !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* 5. botão "next page" */
+    button {
+        order: 5 !important;
+        margin-bottom: 120px !important;
+        padding: 10px 30px !important;
+        font-size: 20px !important;
+        display: block !important;
+    }
+
     .navbtn, .teaching-wrapper {
-        width: auto !important; /* O botão terá o tamanho exato do texto */
-        height: auto !important; /* Altura automática */
-        padding: 8px 10px !important; /* Área de toque confortável */
+        width: auto !important; /* botão com tamanho exato do texto */
+        height: auto !important; 
+        padding: 8px 10px !important;
         
-        /* Ajustes de Texto */
-        font-size: 12px !important; /* Tamanho legível */
-        font-weight: 700 !important; /* Negrito limpo */
-        text-shadow: none !important; /* REMOVE a sombra grossa que borra no celular */
+        /* texto */
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        text-shadow: none !important;
         
-        /* Opcional: Fundo sutil para ver o botão (remova se não gostar) */
-        /* background-color: rgba(255,255,255,0.1); */
+        background-color: rgba(255,255,255,0.1);
         border-radius: 5px;
         
-        display: inline-block; /* Garante que fiquem na linha */
-        margin: 0 !important; /* Remove margens externas que empurram */
+        display: inline-block; /* fica na linha??? */
+        margin: 0 !important;
     }
     
-    /* Dropdowns no mobile */
+    /* mobile dropdowns */
     .teaching-dropdown {
-        top: 100% !important; /* Fica logo abaixo do texto */
+        top: 100% !important;
         left: 50% !important;
-        transform: translateX(-50%) !important; /* Centraliza o dropdown em relação ao botão */
+        transform: translateX(-50%) !important;
         width: 140px !important;
     }
 
     #name, #intro, #frase, .title, #phoneNumber, .containerSubtitle {
-        text-shadow: none !important; /* Remove o efeito de borda grossa */
-        /* Adiciona uma sombra muito leve apenas para leitura contra o fundo, se necessário */
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5) !important; 
+        text-shadow: none !important; 
+
+        text-shadow: 1px 1px 2px rgba(0,0,0,1.5) !important; 
     }
     
     #name {
-        font-size: 32px !important; /* Ajuste fino para não quebrar */
+        font-size: 32px !important; 
     }
 
-    /* 3. Resetando Posicionamento Fixo (Crucial para o Scroll) */
-    /* Sobrescrevemos o 'position: fixed' do JS para 'relative' ou 'static' */
+    /* resetando posicionamento fixo (se não fica tudo congelado... maldita implementação deprecated pra PC */
+    /* fixed' para 'relative' ou 'static' */
     .imagem, 
     article, 
     .video, 
@@ -551,22 +639,22 @@ button:hover {
     .circle-video,
     .title,
     .containerGeralInfos {
-        position: relative !important; /* !important vence o estilo inline do JS */
+        position: relative !important; /*isso vence o estilo de inline do JS*/
         top: auto !important;
         left: auto !important;
-        transform: none !important; /* Remove transformações que podem deslocar o layout */
-        margin: 20px auto !important; /* Centraliza e dá espaço */
-        width: 90% !important; /* Ocupa quase toda a largura */
+        transform: none !important; 
+        margin: 20px auto !important; 
+        width: 90% !important;
         max-width: 100% !important;
-        min-width: 0 !important; /* Remove limites mínimos que quebram o layout */
+        min-width: 0 !important; /* SEM limites mínimos*/
     }
 
-    /* 4. Ajustes Específicos da Home (Imagem acima do texto) */
+    /* IMAGEM da Home (acima do texto) */
     .imagem {
         margin-top: 20px !important;
-        width: 60vw !important; /* Tamanho da imagem no celular */
+        width: 60vw !important; 
         max-width: 250px !important;
-        border: 5px solid white !important; /* Borda mais fina */
+        border: 5px solid white !important; 
     }
 
     /* Dario 1 (Home) e Dario 2 (About) */
@@ -576,18 +664,18 @@ button:hover {
     }
 
     article {
-        text-align: center; /* Centraliza texto */
+        text-align: center; 
         padding: 0 15px;
     }
 
-    /* Títulos e Textos */
+    /* títulos/textos */
     #intro {
         font-size: 18px;
-        margin: 0 auto 10px auto !important; /* Centraliza a badge */
+        margin: 0 auto 10px auto !important;
     }
 
     #name {
-        font-size: 36px; /* Fonte menor para o nome */
+        font-size: 36px; 
         line-height: 1.2;
         margin-bottom: 15px;
     }
@@ -598,26 +686,29 @@ button:hover {
     }
 
     .description {
-        font-size: 16px; /* Texto legível */
-        text-align: justify; /* Texto justificado fica mais organizado */
+        font-size: 16px; 
+        text-align: justify; 
         width: 100% !important;
     }
 
-    /* 5. Ajustes de Vídeos */
+    /* odeio vídeos */
     #ytvideo, #ytvideo2, .video {
         height: auto !important;
-        aspect-ratio: 16/9; /* Mantém proporção de vídeo */
+        aspect-ratio: 16/9; 
     }
     
     .circle-video {
         width: 60vw !important;
-        border-radius: 50% !important; /* Garante que continue redondo */
+        border-radius: 50% !important; 
         aspect-ratio: 1/1 !important;
     }
 
-    /* 6. Ajustes da Página de Contato */
+    /*
+    página de contato
+    MELHORAR, AINDA TEM COISA MUITO FEIA
+    */
     .containerGeralInfos {
-        flex-direction: column; /* Empilha as caixas de contato */
+        flex-direction: column; /* STACK caixas de contato */
         gap: 20px;
     }
 
@@ -625,5 +716,142 @@ button:hover {
         width: 100% !important;
         height: auto !important;
         min-height: 200px;
+    }
+}
+
+
+
+/*
+===============================
+ESTILOS MENU MOBILE (Hamburger)
+===============================
+*/
+
+/* esconder (não precisa elementos mobile no PC) */
+.mobile-menu-icon, .mobile-sidebar, .overlay-backdrop {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    
+    .desktop-nav {
+        display: none !important;
+    }
+
+    /* botão abrir menu */
+    .mobile-menu-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 35px;
+        height: 25px;
+        position: fixed;
+        top: 25px;
+        right: 25px;
+        z-index: 1001;
+        cursor: pointer;
+    }
+
+    .mobile-menu-icon span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: white; /* cor dos tracinhos */
+        border-radius: 3px;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* contraste */
+    }
+
+    /* Sidebar */
+    .mobile-sidebar {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0; /* na direita */
+        width: 75%; /* 75% da width */
+        height: 100vh; /* altura total */
+        background: linear-gradient(180deg, #3e5068 0%, #2c3e50 100%);
+        z-index: 1002;
+        transform: translateX(100%); /*começa escondido*/
+        transition: transform 0.3s ease-in-out;
+        padding-top: 60px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    }
+
+    .mobile-sidebar.open {
+        transform: translateX(0); /* desliza para dentro*/
+    }
+
+    /* fundo escuro */
+    .overlay-backdrop {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        z-index: 1000; /* atrás do menu mas na frente do site */
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .overlay-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* links no Menu */
+    .sidebar-header {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+    }
+
+    .close-btn {
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .sidebar-links {
+        display: flex;
+        flex-direction: column;
+        padding: 0 30px;
+    }
+
+    .mob-link {
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .mob-link:hover {
+        color: #07b98e;
+    }
+
+    .mob-submenu {
+        display: none; /* padrão */
+        padding-left: 20px;
+        background-color: rgba(0,0,0,0.1);
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .mob-submenu div {
+        color: #ddd;
+        font-size: 16px;
+        padding: 12px 0;
+        cursor: pointer;
+    }
+
+    /* Classe para mostrar submenu ao clicar */
+    .show-submenu {
+        display: block;
     }
 }
