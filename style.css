@@ -466,3 +466,164 @@ button:hover {
 #contact-footer.visible {
   bottom: 0;
 }
+
+
+
+/* =========================================
+   ESTILOS APENAS PARA CELULAR 
+   ========================================= */
+@media only screen and (max-width: 768px) {
+
+    /* 1. Ajuste do Fundo e Scroll */
+    body {
+        background-attachment: fixed; /* O fundo fica parado enquanto o conteúdo move */
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        overflow-x: hidden; /* Evita scroll lateral indesejado */
+    }
+
+    main {
+        /* Transforma o main em uma coluna flexível para empilhar itens */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-bottom: 100px; /* Espaço para o rodapé não cobrir conteúdo */
+        width: 100%;
+        overflow-y: auto; /* Permite scroll vertical */
+    }
+
+    /* 2. Ajuste do Menu (Header) */
+    nav {
+        display: flex;
+        flex-wrap: wrap; /* Permite quebra de linha se necessário */
+        justify-content: center; /* Centraliza tudo */
+        gap: 5px; /* Espaço pequeno e uniforme entre os botões */
+        padding: 10px 5px; /* Padding reduzido nas laterais */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .navbtn, .teaching-wrapper {
+        width: auto !important; /* O botão terá o tamanho exato do texto */
+        height: auto !important; /* Altura automática */
+        padding: 8px 10px !important; /* Área de toque confortável */
+        
+        /* Ajustes de Texto */
+        font-size: 12px !important; /* Tamanho legível */
+        font-weight: 700 !important; /* Negrito limpo */
+        text-shadow: none !important; /* REMOVE a sombra grossa que borra no celular */
+        
+        /* Opcional: Fundo sutil para ver o botão (remova se não gostar) */
+        /* background-color: rgba(255,255,255,0.1); */
+        border-radius: 5px;
+        
+        display: inline-block; /* Garante que fiquem na linha */
+        margin: 0 !important; /* Remove margens externas que empurram */
+    }
+    
+    /* Dropdowns no mobile */
+    .teaching-dropdown {
+        top: 100% !important; /* Fica logo abaixo do texto */
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Centraliza o dropdown em relação ao botão */
+        width: 140px !important;
+    }
+
+    #name, #intro, #frase, .title, #phoneNumber, .containerSubtitle {
+        text-shadow: none !important; /* Remove o efeito de borda grossa */
+        /* Adiciona uma sombra muito leve apenas para leitura contra o fundo, se necessário */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5) !important; 
+    }
+    
+    #name {
+        font-size: 32px !important; /* Ajuste fino para não quebrar */
+    }
+
+    /* 3. Resetando Posicionamento Fixo (Crucial para o Scroll) */
+    /* Sobrescrevemos o 'position: fixed' do JS para 'relative' ou 'static' */
+    .imagem, 
+    article, 
+    .video, 
+    #ytvideo, 
+    #ytvideo2, 
+    .circle-video,
+    .title,
+    .containerGeralInfos {
+        position: relative !important; /* !important vence o estilo inline do JS */
+        top: auto !important;
+        left: auto !important;
+        transform: none !important; /* Remove transformações que podem deslocar o layout */
+        margin: 20px auto !important; /* Centraliza e dá espaço */
+        width: 90% !important; /* Ocupa quase toda a largura */
+        max-width: 100% !important;
+        min-width: 0 !important; /* Remove limites mínimos que quebram o layout */
+    }
+
+    /* 4. Ajustes Específicos da Home (Imagem acima do texto) */
+    .imagem {
+        margin-top: 20px !important;
+        width: 60vw !important; /* Tamanho da imagem no celular */
+        max-width: 250px !important;
+        border: 5px solid white !important; /* Borda mais fina */
+    }
+
+    /* Dario 1 (Home) e Dario 2 (About) */
+    #dario, .dario2 {
+        /* Garante que a animação inicial não esconda a imagem permanentemente */
+        animation: appear 1s forwards !important; 
+    }
+
+    article {
+        text-align: center; /* Centraliza texto */
+        padding: 0 15px;
+    }
+
+    /* Títulos e Textos */
+    #intro {
+        font-size: 18px;
+        margin: 0 auto 10px auto !important; /* Centraliza a badge */
+    }
+
+    #name {
+        font-size: 36px; /* Fonte menor para o nome */
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    #frase {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: 16px; /* Texto legível */
+        text-align: justify; /* Texto justificado fica mais organizado */
+        width: 100% !important;
+    }
+
+    /* 5. Ajustes de Vídeos */
+    #ytvideo, #ytvideo2, .video {
+        height: auto !important;
+        aspect-ratio: 16/9; /* Mantém proporção de vídeo */
+    }
+    
+    .circle-video {
+        width: 60vw !important;
+        border-radius: 50% !important; /* Garante que continue redondo */
+        aspect-ratio: 1/1 !important;
+    }
+
+    /* 6. Ajustes da Página de Contato */
+    .containerGeralInfos {
+        flex-direction: column; /* Empilha as caixas de contato */
+        gap: 20px;
+    }
+
+    .containerInfo {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 200px;
+    }
+}
