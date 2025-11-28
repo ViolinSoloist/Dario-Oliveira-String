@@ -369,11 +369,11 @@ function carregarPerformance() {
     resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
-    const Video = document.createElement("video");
-    Video.src = "src/performance.mp4";
+    const Video = document.createElement("iframe");
+    Video.id = "performance-ytvideo";
+    Video.src = "https://www.youtube.com/embed/BJUJ_3T3YEs?autoplay=1";
     Video.classList.add("video","circle-video");
     // Video.controls = true;
-    Video.autoplay = true;
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";

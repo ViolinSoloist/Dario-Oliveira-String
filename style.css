@@ -92,13 +92,13 @@ nav {
 }
 
 .imagem {
-    max-width: 26vw;
-    min-width: 150px;
+    width: clamp(150px, 26vw, 26vw);
+    max-height: 300px;
     border-radius: 50%;
     border: 10px solid white;
 
     position: fixed;
-    top: 160px;
+    top: 30vh;
     left: 12.5vw;
 }
 
@@ -148,7 +148,7 @@ nav {
 
 article {
     position: fixed;
-    top: 150px;
+    top: 30vh;
     left: 45vw;
 }
 
@@ -343,7 +343,7 @@ button:hover {
 .circle-video {
     border-radius: 50%;
     aspect-ratio: 1/1;
-    object-fit: cover;
+    object-fit:fill;
     
     border: 5px solid white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -352,6 +352,11 @@ button:hover {
     left: 68%;
     transform: translate(-50%, -50%);
     width: 25vw; 
+}
+
+#performance-ytvideo {
+    aspect-ratio: 1/1;
+    ;
 }
 
 .containerSubtitle {
@@ -884,30 +889,42 @@ PARA CELULAR
     TEACHING OVERVIEW
     ================= */
     .teachingTitle {
+        /* posição */
         position: relative !important;
         top: auto !important;
         transform: none !important;
         left: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
         
-        text-align: center !important;
-        width: 90% !important;
-        min-width: 0 !important;
-        
-        /* AQUI ESTÁ A CORREÇÃO:
-           Em vez de 'auto', usamos '30vh'.
-           Isso empurra o título para baixo em 30% da altura da tela,
-           colocando o conjunto visualmente no centro. */
         margin-top: 20vh !important; 
+        margin-bottom: 30px !important;
         
-        margin-bottom: 20px !important; /* Espaço entre título e vídeo */
-        font-size: 28px !important;
-        
-        /* Garante que o texto fique visível */
-        display: block !important;
+        /* box */
+        width: 85% !important;
+        text-align: center !important;
+        font-size: 26px !important;
+        font-weight: 700 !important;
         color: white !important;
+        
+        /* glassmorphism? */
+        background-color: rgba(30, 45, 60, 0.4) !important; 
+        backdrop-filter: blur(5px) !important;
+        
+        padding: 20px 10px !important;
+        
+        /* bordas */
+        border-radius: 15px !important;
+        border: 1.5px solid rgba(255,255,255,0.1) !important; /* mini borda (mini boi)*/
+        border-bottom: 4px solid #07b98e !important;
+        
+        /* sombreamento pra profundidade */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+        
+        display: block !important;
     }
 
-    /* 2. Ajuste do Vídeo do Youtube (#ytvideo) */
+    /* ajuste do vídeo (#ytvideo) */
     #ytvideo {
         position: relative !important;
         top: auto !important;
@@ -928,6 +945,19 @@ PARA CELULAR
         box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
         
         display: block !important;
+    }
+
+    .circle-video {
+    aspect-ratio: 1/1 !important;
+    object-fit:fill !important;
+    
+    border: 5px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: fixed;
+    top: max(120px,55%);
+    left: 68%;
+    transform: translate(-50%, -50%);
+    width: 25vw; 
     }
 }
 
