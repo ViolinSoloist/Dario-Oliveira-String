@@ -231,6 +231,7 @@ function carregarTeachingPriorities() {
     Video.id = "ytvideo";
     Video.src = "https://www.youtube.com/embed/N-CMq8Anfug?autoplay=1";
     Video.classList.add("video");
+    Video.style.boxShadow = "0 3px 5px rgb(0,0,0,0.4)"; 
 
     main.appendChild(Title);
     main.appendChild(Video);
@@ -253,8 +254,8 @@ function carregarTestimony() {
     Title.id = "testimony-page-title-mobile";
     Title.innerText = "Students & Parents Stories"; 
     Title.style.position = "relative";
-    Title.style.marginTop = "120px";
-    Title.style.marginBottom = "30px";
+    Title.style.marginTop = "clamp(30px, 2vw, 60px)";
+    Title.style.marginBottom = "clamp(30px, 2vw, 60px)";
     Title.style.textAlign = "center";
     Title.style.width = "100%";
 
@@ -372,13 +373,14 @@ function carregarPerformance() {
     const Video = document.createElement("iframe");
     Video.id = "performance-ytvideo";
     Video.src = "https://www.youtube.com/embed/BJUJ_3T3YEs?autoplay=1";
-    Video.classList.add("video","circle-video");
+    Video.classList.add("video");
+    Video.style.boxShadow = "0 3px 5px rgb(0,0,0,0.4)"; 
     // Video.controls = true;
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
-    Artc.style.top = "180px";
-    Artc.style.left = "14vw";
+    Artc.style.top = "300px";
+    Artc.style.left = "12vw";
     Artc.style.width = "33vw";
     Artc.style.minWidth = "200px";
 
@@ -412,6 +414,7 @@ function carregarGroupClass() {
     const Video = document.createElement("iframe");
     Video.src = "https://www.youtube.com/embed/cfHJ5AWJ6Kw?autoplay=1";
     Video.id="ytvideo2";
+    Video.style.boxShadow = "0 3px 5px rgb(0,0,0,0.4)"; 
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";

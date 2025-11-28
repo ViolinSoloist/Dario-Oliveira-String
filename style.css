@@ -93,7 +93,6 @@ nav {
 
 .imagem {
     width: clamp(150px, 26vw, 26vw);
-    max-height: 300px;
     border-radius: 50%;
     border: 10px solid white;
 
@@ -355,8 +354,15 @@ button:hover {
 }
 
 #performance-ytvideo {
-    aspect-ratio: 1/1;
-    ;
+    width: 35vw;
+    min-width: 40px;
+    aspect-ratio: 16/9;
+    position: fixed;
+    top: max(50%,150px);
+    left: 55%;
+    transform: translateY(-30%);
+    border: white solid 3px;
+    border-radius: 15px;
 }
 
 .containerSubtitle {
@@ -488,17 +494,16 @@ CARROSSEL
 
 .carousel-container {
     position: relative;
-    width: 60vw; /* Largura no Desktop */
-    max-width: 500px; /* Não deixa ficar gigante */
-    height: 70vh; /* Altura fixa para caber o conteúdo vertical */
-    margin: 0 auto; /* Centraliza na tela */
-    overflow: hidden; /* Esconde os slides que estão "do lado" */
+    width: 70vw; 
+    height: 60vh; 
+    margin: 0 auto; 
+    overflow: hidden; /* esconde os slides que estão ao lado */
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.2); /* Fundo sutil atrás */
+    background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
     border: 2px solid white;
     
-    /* Animação de entrada */
     opacity: 0;
     transform: translateY(20px);
     animation: appear 1s forwards; 
@@ -508,7 +513,7 @@ CARROSSEL
     display: flex;
     width: 100%;
     height: 100%;
-    transition: transform 0.5s ease-in-out; /* O efeito de deslize */
+    transition: transform 0.5s ease-in-out; 
 }
 
 .carousel-slide {
@@ -937,7 +942,7 @@ PARA CELULAR
         aspect-ratio: 16/9 !important;
         height: auto !important;
         
-        /* Margem inferior para não colar no fim da tela se ela for pequena */
+        /* margem inferior para não colar no fim da tela se ela for pequena */
         margin-bottom: 50px !important; 
         
         border: 3px solid white !important;
@@ -948,16 +953,16 @@ PARA CELULAR
     }
 
     .circle-video {
-    aspect-ratio: 1/1 !important;
-    object-fit:fill !important;
-    
-    border: 5px solid white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    position: fixed;
-    top: max(120px,55%);
-    left: 68%;
-    transform: translate(-50%, -50%);
-    width: 25vw; 
+        aspect-ratio: 1/1 !important;
+        object-fit:fill !important;
+        
+        border: 5px solid white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        position: fixed;
+        top: max(120px,55%);
+        left: 68%;
+        transform: translate(-50%, -50%);
+        width: 25vw; 
     }
 }
 
@@ -1118,6 +1123,7 @@ ESTILOS MENU MOBILE (Hamburger)
         border: none !important;
         background-color: transparent !important;
         box-shadow: none !important;
+        backdrop-filter: none !important;
     }
 
     .testimonial-media {
