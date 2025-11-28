@@ -36,7 +36,7 @@ O foco inicial foi o design e a aparência para telas grandes (Desktop).
 
     Desktop: Funcional e visualmente completo.
 
-    Mobile: A responsividade ainda está em processo de implementação. Embora o site seja funcional em dispositivos móveis, o layout pode apresentar inconsistências visuais.
+    Mobile: Também funcional e quase 100% visualmente completo. 
 
 📱 Navegação
 
