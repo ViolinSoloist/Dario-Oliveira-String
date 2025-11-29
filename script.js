@@ -379,7 +379,7 @@ function carregarPerformance() {
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
-    Artc.style.top = "300px";
+    Artc.style.top = "200px";
     Artc.style.left = "12vw";
     Artc.style.width = "33vw";
     Artc.style.minWidth = "200px";
