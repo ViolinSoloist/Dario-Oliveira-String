@@ -358,9 +358,10 @@ function carregarTestimony() {
     });
 }
 
-function carregarPerformance() {
-    document.body.style.backgroundImage = 'url("src/fundo2.png")';
-    main.innerHTML = "";
+function carregarPerformance()
+{
+    document.body.style.backgroundImage = 'url("src/fundo2.png")'; 
+    main.innerHTML = ""; 
 
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
@@ -370,33 +371,158 @@ function carregarPerformance() {
     resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
-    const Video = document.createElement("iframe");
-    Video.id = "performance-ytvideo";
-    Video.src = "https://www.youtube.com/embed/BJUJ_3T3YEs?autoplay=1";
-    Video.classList.add("video");
-    Video.style.boxShadow = "0 3px 5px rgb(0,0,0,0.4)"; 
-    // Video.controls = true;
+    // BANCO DE DADOS (vídeos são guardados apenas pelo ID)
+    const performanceData = [
+        {
+            category: "Solo Performance",
+            videos: [
+                { title: "Bach Chaconne", id: "zXkzvv1f2Z0" },
+                { title: "Ao pé da fogueira", id: "VY8s_PICtp4" },
+                { title: "Sibelius Violin Concert", id: "N39Hwb2t_NA" },
+                { title: "Mozart Violin Concert 5", id: "DmWlUAtysk0" }
+            ]
+        },
+        {
+            category: "Duo: Violin & Piano",
+            videos: [
+                { title: "Brahms Sonata", id: "Twm0qu5SP_U" }
+            ]
+        },
+        {
+            category: "Duo: Viola & Piano",
+            videos: [
+                { title: "Glinka Sonata", id: "JjldyF-TeVk" }
+            ]
+        },
+        {
+            category: "String Quartet",
+            videos: [
+                { title: "Shostakovsky", id: "R1raSWDB710" }
+            ]
+        }
+    ];
 
-    const Artc = document.createElement("article");
-    Artc.style.position = "fixed";
-    Artc.style.top = "200px";
-    Artc.style.left = "12vw";
-    Artc.style.width = "33vw";
-    Artc.style.minWidth = "200px";
+    let currentCategoryIndex = 0;
 
-    const Title = document.createElement('p');
-    Title.classList.add("title","slideLeftRightTitle");
-    Title.innerText = "Performance";
+    // ESTRUTURA DOM
+    
+    // container principal navegação (título + setas)
+    const navContainer = document.createElement('div');
+    navContainer.className = 'perf-nav-container';
 
-    const Aboutmedescrp = document.createElement('p');
-    Aboutmedescrp.classList.add('description');
-    Aboutmedescrp.style.paddingTop = "20px";
-    Aboutmedescrp.innerText = `As a soloist, a violinist needs strong technique, artistic confidence, and the ability to connect with an audience. Chamber music emphasizes collaboration, requiring listening, flexibility, and balance within the group. In the orchestra, precision and discipline are essential, as players follow the conductor and contribute to a unified sound. Each role develops unique skills that enrich the others, shaping a well-rounded and versatile musician.`;
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'perf-nav-btn';
+    prevBtn.innerHTML = '&#10094;'; // Seta esquerda
 
-    main.appendChild(Video);
-    main.appendChild(Artc);
-    Artc.appendChild(Title);
-    Artc.appendChild(Aboutmedescrp);
+    const categoryTitle = document.createElement('div');
+    categoryTitle.className = 'perf-category-title';
+    categoryTitle.innerText = performanceData[0].category;
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'perf-nav-btn';
+    nextBtn.innerHTML = '&#10095;'; // Seta direita
+
+    navContainer.appendChild(prevBtn);
+    navContainer.appendChild(categoryTitle);
+    navContainer.appendChild(nextBtn);
+
+    // container dos vídeos (Grid)
+    const videoGrid = document.createElement('div');
+    videoGrid.className = 'perf-video-grid';
+
+    function renderVideos() {
+        videoGrid.innerHTML = ''; // Limpa vídeos anteriores
+        const currentData = performanceData[currentCategoryIndex];
+        
+        // Atualiza Título com animação simples
+        categoryTitle.style.opacity = 0;
+        setTimeout(() => {
+            categoryTitle.innerText = currentData.category;
+            categoryTitle.style.opacity = 1;
+        }, 200);
+
+        // Cria os cards de vídeo
+        currentData.videos.forEach(video => {
+            const card = document.createElement('div');
+            card.className = 'perf-video-card';
+            
+            // Imagem de Capa (Pega automático do Youtube)
+            const thumbUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+            
+            card.innerHTML = `
+                <div class="video-thumb-container">
+                    <img src="${thumbUrl}" alt="${video.title}">
+                    <div class="play-icon">▶</div>
+                </div>
+                <p>${video.title}</p>
+            `;
+
+            // Clique para abrir o Modal
+            card.addEventListener('click', () => openVideoModal(video.id));
+            
+            videoGrid.appendChild(card);
+        });
+    }
+
+    // Navegação
+    prevBtn.addEventListener('click', () => {
+        currentCategoryIndex = (currentCategoryIndex - 1 + performanceData.length) % performanceData.length;
+        renderVideos();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentCategoryIndex = (currentCategoryIndex + 1) % performanceData.length;
+        renderVideos();
+    });
+
+    function openVideoModal(videoId) {
+        // Cria o Modal se não existir, ou limpa se existir
+        let modal = document.getElementById('video-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'video-modal';
+            modal.className = 'video-modal';
+            document.body.appendChild(modal);
+            
+            // Fechar ao clicar fora
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeVideoModal();
+            });
+        }
+
+        modal.innerHTML = `
+            <div class="video-modal-content">
+                <span class="video-close-btn">&times;</span>
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        `;
+
+        setTimeout(() => modal.classList.add('active'), 10);
+        
+        modal.querySelector('.video-close-btn').addEventListener('click', closeVideoModal);
+    }
+
+    function closeVideoModal() {
+        const modal = document.getElementById('video-modal');
+        if (modal) {
+            modal.classList.remove('active');
+            // limpar o HTML para parar o som do vídeo
+            setTimeout(() => modal.innerHTML = '', 300);
+        }
+    }
+
+    // Inicialização
+    main.appendChild(navContainer);
+    main.appendChild(videoGrid);
+    renderVideos();
 }
 
 function carregarGroupClass() {

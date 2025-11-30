@@ -577,6 +577,175 @@ iframe.testimonial-media {
 .prev-btn { left: 10px; }
 .next-btn { right: 10px; }
 
+/* =========================================
+   PÁGINA PERFORMANCE
+   ========================================= */
+/* Navegação de Categorias */
+.perf-nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    gap: 15px;
+    width: 100%;
+}
+
+.perf-category-title {
+    background-color: #07b98e;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(18px, 2vw, 24px); /* Fonte responsiva */
+    font-weight: 700;
+    padding: 15px 20px;
+    border-radius: 50px;
+    
+    /* Tamanho fixo/minimo para evitar que as setas fiquem pulando */
+    width: 300px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    box-shadow: 0 5px 15px rgba(7, 185, 142, 0.4);
+    transition: opacity 0.2s ease;
+    height: 60px; /* Altura fixa para alinhar com os botões */
+}
+
+.perf-nav-btn {
+    background: rgba(255, 255, 255, 0.1); /* Fundo sutil */
+    border: 2px solid white;
+    color: white;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+.perf-nav-btn:hover {
+    background-color: white;
+    color: #07b98e;
+    transform: scale(1.1); /* Efeito de crescimento */
+}
+
+.perf-video-grid {
+    display: grid;
+    /* MUDANÇA AQUI: Limitamos o máximo para 450px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 480px));
+    gap: 30px;
+    width: 90%; /* Aumentei um pouco a largura útil */
+    margin: 0 auto 50px auto;
+    max-width: 1200px;
+    justify-content: center; /* Centraliza os cards se tiverem poucos */
+}
+
+/* Cartão do Vídeo (Thumbnail) */
+.perf-video-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    text-align: center;
+}
+
+.perf-video-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.video-thumb-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.video-thumb-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ícone de Play sobre a imagem */
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: white;
+    opacity: 0.8;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+}
+
+.perf-video-card:hover .play-icon {
+    transform: translate(-50%, -50%) scale(1.2);
+    color: #07b98e;
+}
+
+.perf-video-card p {
+    color: white;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* MODAL DE VÍDEO (Estilo Cinema) */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo bem escuro */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.video-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.video-modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    background: black;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.video-close-btn {
+    position: absolute;
+    top: -40px;
+    right: -10px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.video-close-btn:hover {
+    color: #ff4444;
+}
+
 /*
 =============
 PARA CELULAR 
@@ -1148,4 +1317,75 @@ ESTILOS MENU MOBILE (Hamburger)
     
     .prev-btn { left: 0 !important; }
     .next-btn { right: 0 !important; }
+    
+    .perf-nav-btn {
+        margin-bottom: 0 !important;
+        width: 50px !important;
+        height: 50px !important;
+        justify-content: center;
+    }
+
+    /* =========================
+       PERFORMANCE NO MOBILE
+       ========================= */
+    
+    .perf-nav-container {
+        margin-top: 40px !important;
+        gap: 10px;
+    }
+
+    .perf-category-title {
+        font-size: 16px !important;
+        padding: 10px 15px !important;
+        width: 60% !important;
+        height: auto !important;
+        min-height: 50px;
+    }
+
+    .perf-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .perf-video-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 15px !important;
+        width: 100% !important; /* Ocupa largura total */
+        padding-bottom: 30px !important;
+        
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        
+        justify-content: flex-start !important;
+        
+        scrollbar-width:none; 
+    }
+    
+    .perf-video-grid::-webkit-scrollbar { 
+        display: none; /* Chrome/Safari */
+    }
+
+    .perf-video-card {
+        /* O SEGREDO DO PEEK:
+           85vw deixa 15vw de espaço sobrando na tela.
+           Como centralizamos com scroll-snap, vai sobrar 7.5vw de cada lado,
+           mostrando um pedacinho do anterior e do próximo. */
+        min-width: 75vw !important; 
+        scroll-snap-align: center;
+        
+        /* Removemos margens para o gap controlar o espaço */
+        margin: 0 !important; 
+    }
+
+    .video-modal-content {
+        width: 95% !important;
+    }
+    
+    .video-close-btn {
+        top: -50px;
+        right: 0;
+    }
 }
