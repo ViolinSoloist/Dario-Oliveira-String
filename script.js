@@ -6,10 +6,9 @@ const about = document.getElementsByClassName('navbtn')[1];
 const teaching = document.getElementsByClassName("navbtn")[2];
 const testimony = document.getElementsByClassName("navbtn")[3];
 const performances = document.getElementsByClassName("navbtn")[4];
-const resources = document.getElementsByClassName("navbtn")[5];
-const contact = document.getElementsByClassName("navbtn")[6];
+const contact = document.getElementsByClassName("navbtn")[5];
 
-//dropdown (teaching)
+//dropdown (teaching) ATUALIZADO
 const teachingWrapper = document.createElement('div');
 teachingWrapper.className = 'teaching-wrapper navbtn';
 teaching.replaceWith(teachingWrapper);
@@ -18,9 +17,12 @@ teachingWrapper.appendChild(teaching);
 const teachingDropdown = document.createElement('div');
 teachingDropdown.className = 'teaching-dropdown';
 
+// Agora com 4 opções
 teachingDropdown.innerHTML = `
   <div class="dropdown-option" data-page="philosophy">Teaching Philosophy</div>
   <div class="dropdown-option" data-page="priority">Teaching Overview</div>
+  <div class="dropdown-option" data-page="group">Group Class</div>
+  <div class="dropdown-option" data-page="violin">Violin Lesson Virtual</div>
 `;
 
 teachingWrapper.appendChild(teachingDropdown);
@@ -30,32 +32,7 @@ teachingWrapper.addEventListener('click', (e) => {
     teachingWrapper.classList.toggle('active');
 });
 
-//Dropdown (resources)
-const resourcesWrapper = document.createElement('div');
-resourcesWrapper.className = 'teaching-wrapper navbtn';
-resources.replaceWith(resourcesWrapper);
-resourcesWrapper.appendChild(resources);
-
-const resourcesDropdown = document.createElement('div');
-resourcesDropdown.className = 'teaching-dropdown';
-
-resourcesDropdown.innerHTML = `
-  <div class="dropdown-option" data-page="group">Group Class</div>
-  <div class="dropdown-option" data-page="violin">Violin Lesson Virtual</div>
-`;
-
-resourcesWrapper.appendChild(resourcesDropdown);
-
-resourcesWrapper.addEventListener('click', (e) => {
-    e.stopPropagation();
-    resourcesWrapper.classList.toggle('active');
-});
-
-document.addEventListener('click', () => {
-    teachingWrapper.classList.remove('active');
-    resourcesWrapper.classList.remove('active');
-});
-
+// Listener unificado para as 4 páginas
 teachingDropdown.querySelectorAll('.dropdown-option').forEach(option => {
     option.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -65,29 +42,28 @@ teachingDropdown.querySelectorAll('.dropdown-option').forEach(option => {
             carregarTeachingPhy();
         } else if (page === 'priority') {
             carregarTeachingPriorities();
+        } else if (page === 'group') {     // Adicionado
+            carregarGroupClass();
+        } else if (page === 'violin') {    // Adicionado
+            carregarViolinLesson();
         }
         teachingWrapper.classList.remove('active');
     });
 });
 
-resourcesDropdown.querySelectorAll('.dropdown-option').forEach(option => {
-    option.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const page = e.target.dataset.page;
-
-        if (page === 'group') {
-            carregarGroupClass();
-        } else if (page === 'violin') {
-            carregarViolinLesson();
-        }
-        resourcesWrapper.classList.remove('active');
-    });
+// Listener global para fechar ao clicar fora
+document.addEventListener('click', () => {
+    teachingWrapper.classList.remove('active');
+    // resourcesWrapper.classList.remove('active'); // Linha removida
 });
 
+
 let brilho_inpage = 70;
+
 carregarHome();
 
 function carregarHome() {
+    
     body.style.backgroundImage = `url("src/fundo.png")`;
     main.innerHTML = '';
 
@@ -96,7 +72,6 @@ function carregarHome() {
     teaching.style.filter = "brightness(100%)";
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
     const Img = document.createElement("img");
@@ -109,7 +84,7 @@ function carregarHome() {
         <p id="intro">Welcome To</p>
         <p id="name">Dario Oliveira</p>
         <p id="frase">Music for life: performing, teaching and inspiring</p>
-        <button onclick="carregarAboutme()">Next page</button>
+        <button id="home-next-page-btn" class="next-page-btn" onclick="carregarAboutme()">Next page</button>
     `;
 
     main.appendChild(Img);
@@ -125,7 +100,6 @@ function carregarAboutme() {
     teaching.style.filter = "brightness(100%)";
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
     const Img = document.createElement("img");
@@ -140,6 +114,7 @@ function carregarAboutme() {
     Artc.style.minWidth = "200px";
 
     const Title = document.createElement('p');
+    Title.id = "aboutme-title";
     Title.classList.add("title","slideLeftRightTitle");
     Title.innerText = "About me";
 
@@ -164,7 +139,6 @@ function carregarTeachingPhy() {
     teaching.style.filter = `brightness(${brilho_inpage}%)`;
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
     const Img = document.createElement("img");
@@ -217,7 +191,6 @@ function carregarTeachingPriorities() {
     teaching.style.filter = `brightness(${brilho_inpage}%)`;
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
     const Title = document.createElement('p');
@@ -246,7 +219,6 @@ function carregarTestimony() {
     teaching.style.filter = "brightness(100%)";
     testimony.style.filter = `brightness(${brilho_inpage}%)`;
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
     const Title = document.createElement('p');
@@ -358,20 +330,18 @@ function carregarTestimony() {
     });
 }
 
-function carregarPerformance()
-{
+function carregarPerformance() {
     document.body.style.backgroundImage = 'url("src/fundo2.png")'; 
     main.innerHTML = ""; 
 
+    // Resetar filtros
     home.style.filter = "brightness(100%)";
     about.style.filter = "brightness(100%)";
     teaching.style.filter = "brightness(100%)";
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = `brightness(${brilho_inpage}%)`;
-    resources.style.filter = "brightness(100%)";
     contact.style.filter = "brightness(100%)";
 
-    // BANCO DE DADOS (vídeos são guardados apenas pelo ID)
     const performanceData = [
         {
             category: "Solo Performance",
@@ -395,7 +365,7 @@ function carregarPerformance()
             ]
         },
         {
-            category: "String Quartet",
+            category: "Chamber Music Colaboration",
             videos: [
                 { title: "Shostakovsky", id: "R1raSWDB710" }
             ]
@@ -404,49 +374,52 @@ function carregarPerformance()
 
     let currentCategoryIndex = 0;
 
-    // ESTRUTURA DOM
+    // --- ESTRUTURA DOM ATUALIZADA ---
     
-    // container principal navegação (título + setas)
+    // 1. Container do Título (Apenas o título)
     const navContainer = document.createElement('div');
     navContainer.className = 'perf-nav-container';
-
-    const prevBtn = document.createElement('button');
-    prevBtn.className = 'perf-nav-btn';
-    prevBtn.innerHTML = '&#10094;'; // Seta esquerda
 
     const categoryTitle = document.createElement('div');
     categoryTitle.className = 'perf-category-title';
     categoryTitle.innerText = performanceData[0].category;
 
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'perf-nav-btn';
-    nextBtn.innerHTML = '&#10095;'; // Seta direita
-
-    navContainer.appendChild(prevBtn);
     navContainer.appendChild(categoryTitle);
-    navContainer.appendChild(nextBtn);
 
-    // container dos vídeos (Grid)
+    // 2. Container dos Vídeos
     const videoGrid = document.createElement('div');
     videoGrid.className = 'perf-video-grid';
+
+    // 3. Container dos Botões (Novo! Separado para facilitar a posição mobile)
+    const btnContainer = document.createElement('div');
+    btnContainer.className = 'perf-buttons-container';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'perf-nav-btn';
+    prevBtn.innerHTML = '&#10094;'; // Esquerda
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'perf-nav-btn';
+    nextBtn.innerHTML = '&#10095;'; // Direita
+
+    btnContainer.appendChild(prevBtn);
+    btnContainer.appendChild(nextBtn);
+
+    // --- FUNÇÕES ---
 
     function renderVideos() {
         videoGrid.innerHTML = ''; 
         const currentData = performanceData[currentCategoryIndex];
         
-        //atualiza título com animação simples
         categoryTitle.style.opacity = 0;
         setTimeout(() => {
             categoryTitle.innerText = currentData.category;
             categoryTitle.style.opacity = 1;
         }, 200);
 
-        // cria cards
         currentData.videos.forEach(video => {
             const card = document.createElement('div');
             card.className = 'perf-video-card';
-            
-            // thumbnail
             const thumbUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
             
             card.innerHTML = `
@@ -456,14 +429,11 @@ function carregarPerformance()
                 </div>
                 <p>${video.title}</p>
             `;
-
             card.addEventListener('click', () => openVideoModal(video.id));
-            
             videoGrid.appendChild(card);
         });
     }
 
-    // navegação
     prevBtn.addEventListener('click', () => {
         currentCategoryIndex = (currentCategoryIndex - 1 + performanceData.length) % performanceData.length;
         renderVideos();
@@ -475,37 +445,23 @@ function carregarPerformance()
     });
 
     function openVideoModal(videoId) {
-        // cria o modal se não existir, ou limpa se existir
         let modal = document.getElementById('video-modal');
         if (!modal) {
             modal = document.createElement('div');
             modal.id = 'video-modal';
             modal.className = 'video-modal';
             document.body.appendChild(modal);
-            
-            // close click out
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) closeVideoModal();
             });
         }
-
         modal.innerHTML = `
             <div class="video-modal-content">
                 <span class="video-close-btn">&times;</span>
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         `;
-
         setTimeout(() => modal.classList.add('active'), 10);
-        
         modal.querySelector('.video-close-btn').addEventListener('click', closeVideoModal);
     }
 
@@ -513,13 +469,14 @@ function carregarPerformance()
         const modal = document.getElementById('video-modal');
         if (modal) {
             modal.classList.remove('active');
-            // limpar o HTML para parar o som do vídeo
             setTimeout(() => modal.innerHTML = '', 300);
         }
     }
 
+    // Inicialização (Ordem importante: Título -> Grid -> Botões)
     main.appendChild(navContainer);
     main.appendChild(videoGrid);
+    main.appendChild(btnContainer); // Botões ficam no final do HTML
     renderVideos();
 }
 
@@ -532,7 +489,6 @@ function carregarGroupClass() {
     teaching.style.filter = "brightness(100%)";
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = `brightness(${brilho_inpage}%)`;
     contact.style.filter = "brightness(100%)";
 
     const Video = document.createElement("iframe");
@@ -574,7 +530,6 @@ function carregarViolinLesson() {
     teaching.style.filter = "brightness(100%)";
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = `brightness(${brilho_inpage}%)`;
     contact.style.filter = "brightness(100%)";
 
     const Video = document.createElement("video");
@@ -623,7 +578,6 @@ function carregarContato() {
     teaching.style.filter = "brightness(100%)";
     testimony.style.filter = "brightness(100%)";
     performances.style.filter = "brightness(100%)";
-    resources.style.filter = "brightness(100%)";
     contact.style.filter = `brightness(${brilho_inpage}%)`;
 
     const Contatos = document.createElement("article");
@@ -647,29 +601,17 @@ function carregarContato() {
         </figure>
     `;
 
-    const Container2 = document.createElement("section");
-    Container2.classList.add("containerInfo"); 
-    Container2.innerHTML = `
-        <p class="containerSubtitle">Services List</p>
-        <figcaption class="textoredesocial">Individual Lessons</figcaption>
-        <figcaption class="textoredesocial">Group Lessons</figcaption>
-        <figcaption class="textoredesocial">Virtual Lessons</figcaption>
-        <figcaption class="textoredesocial">Chamber Collaboration</figcaption>
-        <figcaption class="textoredesocial">Violin/Viola Orchestra</figcaption>
-    `;
-
     const Container3 = document.createElement("section");
     Container3.classList.add("containerInfo"); 
     Container3.innerHTML = `
     <div class="contentWrapper">
-        <p class="containerSubtitle">Phone Number</p>
-        <figcaption id="phoneNumber" class="textoredesocial">+1 (901) 679-0094</figcaption>
+        <p class="containerSubtitle">E-mail</p>
+        <figcaption id="phoneNumber" class="textoredesocial">dario.violino.santos@gmail.com</figcaption>
     </div>
     `;
 
     main.appendChild(Contatos);
     Contatos.appendChild(Container1);
-    Contatos.appendChild(Container2);
     Contatos.appendChild(Container3);
 
     const YT = document.getElementsByClassName("redeSocial")[0];
