@@ -346,6 +346,21 @@ button:hover {
     border-radius: 15px;
 }
 
+/*eu sei que eu poderia só ter usado uma classe de ytvideo e IDs pra mudanças pequenas, mas como eu já comecei assim 
+vai dar trabalho mudar, depois eu faço isso*/
+#ytvideo3 {
+    width: 18vw;
+    min-width: 40px;
+
+    aspect-ratio: 16/9;
+    position: fixed;
+    top: max(40%,150px);
+    left: 65%;
+    transform: translateY(-30%);
+    border: white solid 3px;
+    border-radius: 15px;
+}
+
 .circle-video {
     border-radius: 50%;
     aspect-ratio: 1/1;
@@ -941,6 +956,7 @@ PARA CELULAR
     .video, 
     #ytvideo, 
     #ytvideo2, 
+    #ytvideo3,
     .circle-video,
     .title,
     .containerGeralInfos {
@@ -997,9 +1013,9 @@ PARA CELULAR
     }
 
     /* odeio vídeos */
-    #ytvideo, #ytvideo2, .video {
+    #ytvideo, #ytvideo2, #ytvideo3, .video {
         height: auto !important;
-        aspect-ratio: 16/9; 
+        aspect-ratio: 16/9 !important; 
     }
     
     .circle-video {
@@ -1386,7 +1402,7 @@ ESTILOS MENU MOBILE (Hamburger)
     .perf-video-grid::-webkit-scrollbar { display: none; }
 
     .perf-video-card {
-        min-width: 85vw !important; /* Efeito Netflix */
+        min-width: 75vw !important; /* Efeito Netflix */
         scroll-snap-align: center;
         margin: 0 !important;
     }

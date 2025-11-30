@@ -17,9 +17,10 @@ teachingWrapper.appendChild(teaching);
 const teachingDropdown = document.createElement('div');
 teachingDropdown.className = 'teaching-dropdown';
 
-// Agora com 4 opções
+// Adicionei a linha do 'triangle' na segunda posição
 teachingDropdown.innerHTML = `
   <div class="dropdown-option" data-page="philosophy">Teaching Philosophy</div>
+  <div class="dropdown-option" data-page="triangle">The Suzuki Triangle</div>
   <div class="dropdown-option" data-page="priority">Teaching Overview</div>
   <div class="dropdown-option" data-page="group">Group Class</div>
   <div class="dropdown-option" data-page="violin">Violin Lesson Virtual</div>
@@ -32,7 +33,7 @@ teachingWrapper.addEventListener('click', (e) => {
     teachingWrapper.classList.toggle('active');
 });
 
-// Listener unificado para as 4 páginas
+// Listener unificado para as 5 páginas
 teachingDropdown.querySelectorAll('.dropdown-option').forEach(option => {
     option.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -40,11 +41,13 @@ teachingDropdown.querySelectorAll('.dropdown-option').forEach(option => {
 
         if (page === 'philosophy') {
             carregarTeachingPhy();
+        } else if (page === 'triangle') {   // NOVO IF
+            carregarSuzukiTriangle();
         } else if (page === 'priority') {
             carregarTeachingPriorities();
-        } else if (page === 'group') {     // Adicionado
+        } else if (page === 'group') {
             carregarGroupClass();
-        } else if (page === 'violin') {    // Adicionado
+        } else if (page === 'violin') {
             carregarViolinLesson();
         }
         teachingWrapper.classList.remove('active');
@@ -182,6 +185,58 @@ function carregarTeachingPhy() {
     Artc.appendChild(Quotes);
 }
 
+function carregarSuzukiTriangle() {
+    document.body.style.backgroundImage = 'url("src/fundo2.png")';
+    main.innerHTML = "";
+
+    // Reset de filtros (ajuste conforme o seu passo anterior de limpeza)
+    home.style.filter = "brightness(100%)";
+    about.style.filter = "brightness(100%)";
+    teaching.style.filter = `brightness(${brilho_inpage}%)`;
+    testimony.style.filter = "brightness(100%)";
+    performances.style.filter = "brightness(100%)";
+    // resources removido
+    contact.style.filter = "brightness(100%)";
+
+    // O Vídeo (Mudei o ID para o que estava na página de testimony)
+    const Video = document.createElement("iframe");
+    // ID do vídeo "Lesson Moments/Parents" que estava no carrossel
+    Video.src = "https://www.youtube.com/embed/78R6PEUmLVg?autoplay=1"; 
+    Video.id = "ytvideo3"; 
+    Video.style.boxShadow = "0 3px 5px rgb(0,0,0,0.4)"; 
+    Video.style.aspectRatio = "9/16";
+
+    // O Texto
+    const Artc = document.createElement("article");
+    Artc.style.position = "fixed";
+    Artc.style.top = "20vh";
+    Artc.style.left = "14vw";
+    Artc.style.width = "33vw";
+    Artc.style.minWidth = "200px";
+
+    const Title = document.createElement('p');
+    Title.classList.add("title", "slideLeftRightTitle");
+    Title.innerText = "The Suzuki Triangle";
+    Title.style.whiteSpace = "nowrap";
+    Title.style.overflowX = "visible";
+
+    const TriangleDesc = document.createElement('p');
+    TriangleDesc.classList.add('description');
+    TriangleDesc.style.paddingTop = "20px";
+    
+    // Texto explicativo e inspirador sobre o triângulo
+    TriangleDesc.innerText = `
+        At the heart of the Suzuki Method lies the "Suzuki Triangle": the Student, the Teacher, and the Parent. Just as a triangle relies on a strong base to support its peak, a child's musical success depends on the cooperative relationship between the teacher and the parents.
+        
+        While the teacher guides the path, the parent creates the nurturing environment at home—attending lessons, taking notes, and encouraging daily practice. Together, we build a foundation of love, discipline, and support, ensuring the student thrives not just as a musician, but as a confident individual.
+    `;
+
+    main.appendChild(Video);
+    main.appendChild(Artc);
+    Artc.appendChild(Title);
+    Artc.appendChild(TriangleDesc);
+}
+
 function carregarTeachingPriorities() {
     document.body.style.backgroundImage = 'url("src/fundo2.png")';
     main.innerHTML = "";
@@ -252,7 +307,7 @@ function carregarTestimony() {
     // -----------------------------------------------------
     // --- DADOS DOS DEPOIMENTOS (DICIONARIO PARA ADICIONAR MAIS) ---
     // -----------------------------------------------------
-
+    
     const testimonials = [
         {
             type: 'image',
@@ -260,14 +315,9 @@ function carregarTestimony() {
             caption: 'Results and progress celebration'
         },
         {
-            type: 'video', // ID = 78R6PEUmLVg
-            src: 'https://www.youtube.com/embed/78R6PEUmLVg', 
-            caption: 'Student Performance'
-        },
-        {
-            type: 'video', // ID = 7QmB36bMFYM
-            src: 'https://www.youtube.com/embed/7QmB36bMFYM',
-            caption: 'Lesson Moments'
+            type: 'video', 
+            src: 'https://youtube.com/embed/7QmB36bMFYM', 
+            caption: `Will's testimony`
         }
     ];
 
