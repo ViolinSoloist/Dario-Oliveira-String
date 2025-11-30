@@ -278,7 +278,7 @@ function carregarTestimony() {
     track.classList.add('carousel-track');
 
     // -----------------------------------------------------
-    // --- DADOS DOS DEPOIMENTOS (ADICIONAR MAIS DEPOIS) ---
+    // --- DADOS DOS DEPOIMENTOS (DICIONARIO PARA ADICIONAR MAIS) ---
     // -----------------------------------------------------
 
     const testimonials = [
@@ -431,22 +431,22 @@ function carregarPerformance()
     videoGrid.className = 'perf-video-grid';
 
     function renderVideos() {
-        videoGrid.innerHTML = ''; // Limpa vídeos anteriores
+        videoGrid.innerHTML = ''; 
         const currentData = performanceData[currentCategoryIndex];
         
-        // Atualiza Título com animação simples
+        //atualiza título com animação simples
         categoryTitle.style.opacity = 0;
         setTimeout(() => {
             categoryTitle.innerText = currentData.category;
             categoryTitle.style.opacity = 1;
         }, 200);
 
-        // Cria os cards de vídeo
+        // cria cards
         currentData.videos.forEach(video => {
             const card = document.createElement('div');
             card.className = 'perf-video-card';
             
-            // Imagem de Capa (Pega automático do Youtube)
+            // thumbnail
             const thumbUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
             
             card.innerHTML = `
@@ -457,14 +457,13 @@ function carregarPerformance()
                 <p>${video.title}</p>
             `;
 
-            // Clique para abrir o Modal
             card.addEventListener('click', () => openVideoModal(video.id));
             
             videoGrid.appendChild(card);
         });
     }
 
-    // Navegação
+    // navegação
     prevBtn.addEventListener('click', () => {
         currentCategoryIndex = (currentCategoryIndex - 1 + performanceData.length) % performanceData.length;
         renderVideos();
@@ -476,7 +475,7 @@ function carregarPerformance()
     });
 
     function openVideoModal(videoId) {
-        // Cria o Modal se não existir, ou limpa se existir
+        // cria o modal se não existir, ou limpa se existir
         let modal = document.getElementById('video-modal');
         if (!modal) {
             modal = document.createElement('div');
@@ -484,7 +483,7 @@ function carregarPerformance()
             modal.className = 'video-modal';
             document.body.appendChild(modal);
             
-            // Fechar ao clicar fora
+            // close click out
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) closeVideoModal();
             });
@@ -519,7 +518,6 @@ function carregarPerformance()
         }
     }
 
-    // Inicialização
     main.appendChild(navContainer);
     main.appendChild(videoGrid);
     renderVideos();

@@ -578,9 +578,9 @@ iframe.testimonial-media {
 .next-btn { right: 10px; }
 
 /* =========================================
-   PÁGINA PERFORMANCE
+   PÁGINA PERFORMANCE (DESKTOP)
    ========================================= */
-/* Navegação de Categorias */
+
 .perf-nav-container {
     display: flex;
     justify-content: center;
@@ -595,12 +595,11 @@ iframe.testimonial-media {
     background-color: #07b98e;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(18px, 2vw, 24px); /* Fonte responsiva */
+    font-size: clamp(18px, 2vw, 24px);
     font-weight: 700;
     padding: 15px 20px;
     border-radius: 50px;
     
-    /* Tamanho fixo/minimo para evitar que as setas fiquem pulando */
     width: 300px; 
     display: flex;
     justify-content: center;
@@ -609,11 +608,11 @@ iframe.testimonial-media {
     
     box-shadow: 0 5px 15px rgba(7, 185, 142, 0.4);
     transition: opacity 0.2s ease;
-    height: 60px; /* Altura fixa para alinhar com os botões */
+    height: 60px;
 }
 
 .perf-nav-btn {
-    background: rgba(255, 255, 255, 0.1); /* Fundo sutil */
+    background: rgba(255, 255, 255, 0.1);
     border: 2px solid white;
     color: white;
     font-size: 20px;
@@ -631,18 +630,18 @@ iframe.testimonial-media {
 .perf-nav-btn:hover {
     background-color: white;
     color: #07b98e;
-    transform: scale(1.1); /* Efeito de crescimento */
+    transform: scale(1.1); 
 }
 
 .perf-video-grid {
     display: grid;
-    /* MUDANÇA AQUI: Limitamos o máximo para 450px */
+
     grid-template-columns: repeat(auto-fit, minmax(280px, 480px));
     gap: 30px;
-    width: 90%; /* Aumentei um pouco a largura útil */
+    width: 90%; 
     margin: 0 auto 50px auto;
     max-width: 1200px;
-    justify-content: center; /* Centraliza os cards se tiverem poucos */
+    justify-content: center;
 }
 
 /* Cartão do Vídeo (Thumbnail) */
@@ -674,7 +673,6 @@ iframe.testimonial-media {
     object-fit: cover;
 }
 
-/* Ícone de Play sobre a imagem */
 .play-icon {
     position: absolute;
     top: 50%;
@@ -699,7 +697,7 @@ iframe.testimonial-media {
     font-size: 16px;
 }
 
-/* MODAL DE VÍDEO (Estilo Cinema) */
+/* MODAL DE VÍDEO */
 .video-modal {
     position: fixed;
     top: 0;
@@ -1353,7 +1351,7 @@ ESTILOS MENU MOBILE (Hamburger)
         overflow-x: auto !important;
         scroll-snap-type: x mandatory;
         gap: 15px !important;
-        width: 100% !important; /* Ocupa largura total */
+        width: 100% !important; 
         padding-bottom: 30px !important;
         
         padding-left: 20px !important;
@@ -1369,14 +1367,8 @@ ESTILOS MENU MOBILE (Hamburger)
     }
 
     .perf-video-card {
-        /* O SEGREDO DO PEEK:
-           85vw deixa 15vw de espaço sobrando na tela.
-           Como centralizamos com scroll-snap, vai sobrar 7.5vw de cada lado,
-           mostrando um pedacinho do anterior e do próximo. */
         min-width: 75vw !important; 
         scroll-snap-align: center;
-        
-        /* Removemos margens para o gap controlar o espaço */
         margin: 0 !important; 
     }
 
