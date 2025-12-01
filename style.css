@@ -1,16 +1,26 @@
 body {
     font-family: 'Montserrat';
     transition: background-image 0.8s ease-in-out;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 main {
     position: relative;
+    
+    /* não colar no fundo, mas acho que não precisa*/
+    padding-bottom: 50px; 
 }
+
 nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 25px 50px 0px 50px;
+
+    position: relative;
+    z-index: 2000;
 }
 
 .navbtn {
@@ -23,12 +33,7 @@ nav {
     text-align: center;
     font-size: clamp(12px,1.5vw,1.4vw);
     font-weight: 900;
-    /* text-shadow: 
-        1px 1px 0 white,
-        -1px -1px 0 white,
-        1px -1px 0 white,
-        -1px 1px 0 white; */
-
+    transition: filter 0.3s ease; /* transição boa mudança de brilho */
 }
 
 .navbtn:hover {
@@ -39,56 +44,71 @@ nav {
     border-radius: 1px;
 }
 
-/* Container principal */
-.teaching-wrapper {
+/* keyword: BRILHO, NAVBAR, HIGHLIGHT, css controla brilho*/
+.navbtn.active {
+    filter: brightness(70%); 
+}
+
+.navbtn:hover {
+    cursor: pointer;
+    font-size: clamp(14px,1.7vw,1.6vw);
+    box-shadow: inset 0 -3px 0 0 rgba(0, 0, 0, 0.1),
+        inset 0 -4px 0 0 currentColor;
+    border-radius: 1px;
+}
+
+/* container principal */
+.teaching-wrapper, .performance-wrapper {
     position: relative;
     display: inline-block;
     cursor: pointer;
 }
 
-.teaching-dropdown {
+.teaching-dropdown, .performance-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100px;
+    
+    width: auto;       
+    min-width: 220px;    
+    
     background: #7e8a9d;
-    border-radius: 0 0 4px 4px;
-    /* bordas suaves?? */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    /* sombra suave?? */
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    
     opacity: 0;
     visibility: hidden;
     transform: translateY(-5px);
     transition: all 0.2s ease;
-    z-index: 100;
-    width: 120px; 
-    min-width: fit-content; 
+    z-index: 2001;
 }
 
 .dropdown-option {
-    padding: 6px 8px;
-    font-size: 0.8em;
-
     color: white;
     transition: background-color 0.2s ease;
     border-bottom: 1px solid #6c7686;
-    font-size: 0.7rem; 
-    white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    padding: 4px 8px; 
+    
+   
+    font-size: 15px;
+    
+   
+    padding: 12px 20px; 
+    
+    white-space: nowrap; 
+    
 }
 
 .dropdown-option:last-child {
     border-bottom: none;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 8px 8px;
 }
 
 .dropdown-option:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.teaching-wrapper.active .teaching-dropdown {
+.teaching-wrapper.active .teaching-dropdown,
+.performance-wrapper.active .performance-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -335,12 +355,12 @@ button:hover {
 }
 
 #ytvideo2 {
-    width: 35vw;
+    width: 18vw;
     min-width: 40px;
-    aspect-ratio: 16/9;
+    aspect-ratio: 9/16;
     position: fixed;
-    top: max(50%,150px);
-    left: 55%;
+    top: max(40%,150px);
+    left: 67%;
     transform: translateY(-30%);
     border: white solid 3px;
     border-radius: 15px;
@@ -535,47 +555,85 @@ CARROSSEL
 }
 
 .carousel-slide {
-    min-width: 100%; /* cada slide ocupa 100% do container */
+    min-width: 100%;
     height: 100%;
+
+    /*  flexbox alinha lado a lado (texto + mídia) */
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center;
+    padding: 40px; 
+    box-sizing: border-box;
+    gap: 40px;
+
+    overflow-y: auto;
+}
+
+/* container do Texto (left) */
+.slide-text-content {
+    flex: 1; /* metade do espaço */
+    color: white;
+    font-family: 'ABeeZee', sans-serif;
+    text-shadow: 1px 1px 2px black;
+    animation: appear 1s forwards;
+}
+
+.slide-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 700;
+    color: #07b98e;
+    margin-bottom: 15px;
+    text-shadow: none;
+}
+
+.slide-desc {
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.slide-media-wrapper {
+    flex: 1.2;
+    height: 100%; /* container usa a altura disponível */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
+    justify-content: center;
 }
 
 .testimonial-media {
+    width: auto;  /* manter a proporção */
+    height: auto;
+    max-height: 430px;
     max-width: 100%;
-    max-height: 85%; /* espaço para a legenda */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    object-fit: contain; /* garante imagem/video apareça sem cortar */
+    
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5); 
+    
+    object-fit: contain;
 }
 
-/* ajuste específico: garante que iframes videos não fiquem achatados */
+/* ajuste específico: garante que os vídeos não fiquem pequenos */
 iframe.testimonial-media {
-    aspect-ratio: 9/16; /* formato de Shorts/Celular */
-    height: 85%;
-    width: auto;
+    height: 550px; 
+    aspect-ratio: 9/16;
 }
 
 .testimonial-caption {
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 15px;
-    text-align: center;
-    text-shadow: 1px 1px 2px black;
-    font-family: 'ABeeZee', sans-serif;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ccc;
+    font-style: italic;
 }
 
-/* Botões de Navegação */
+/* BOTÕES DE NAVEGAÇÃO */
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(7, 185, 142, 0.8); /* Cor verde do tema */
+    background-color: rgba(7, 185, 142, 0.8);
     color: white;
     border: none;
     font-size: 24px;
@@ -585,7 +643,7 @@ iframe.testimonial-media {
     border-radius: 5px;
     transition: background 0.3s;
     opacity: 0; 
-    animation: appear 1s forwards 0.5s; /* aparece depois do container */
+    animation: appear 1s forwards 0.5s; /* depois do container */
 }
 
 .carousel-btn:hover {
@@ -646,13 +704,13 @@ PÁGINA PERFORMANCE (DESKTOP)
     display: flex;
     justify-content: space-between; 
     align-items: center; 
-    pointer-events: none; /* Permite clicar no título que está "atrás" */
+    pointer-events: none; /* permite clicar no título que está "atrás" */
     z-index: 2;
 }
 
 /* Botões */
 .perf-nav-btn {
-    pointer-events: auto; /* Reativa clique */
+    pointer-events: auto; /* reage clique */
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid white;
     color: white;
@@ -674,7 +732,7 @@ PÁGINA PERFORMANCE (DESKTOP)
     transform: scale(1.1);
 }
 
-/* Grid de Vídeos */
+/* grid de vídeos */
 .perf-video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 450px));
@@ -685,7 +743,7 @@ PÁGINA PERFORMANCE (DESKTOP)
     justify-content: center;
 }
 
-/* Cartão do Vídeo (Thumbnail) */
+/* Thumbnail */
 .perf-video-card {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -745,7 +803,7 @@ PÁGINA PERFORMANCE (DESKTOP)
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Fundo bem escuro */
+    background-color: rgba(0, 0, 0, 0.9); /* escuro */
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -785,652 +843,53 @@ PÁGINA PERFORMANCE (DESKTOP)
     color: #ff4444;
 }
 
-/*
-=============
-PARA CELULAR 
-============= */
-@media only screen and (max-width: 768px) {
-
-    body {
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-        min-height: 100vh;
-
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
-
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-bottom: 40px; 
-        padding-left: 5% !important;
-        width: 90%;
-        overflow-y: auto;
-    }
-
-    /* menu (header) */
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center; 
-        gap: 5px;
-        padding: 10px 5px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* ==================================================
-    AJUSTES ESPECÍFICOS DA PÁGINA HOME (CELULAR)
-    ================================================== */
-
-    main {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        padding-top: 50px !important; 
-    }
-
-    /*
-    article precisa sumir pra que os filhos obedeçam a ordem do main 
-    pra poder usar ordem
-    */
-    article {
-        display: contents !important;
-    }
-
-    /* "Welcome To" (intro) */
-    #intro {
-        order: 1 !important;
-        margin-top: 0 !important; /* margin=0 porque padding já dá espaço */
-        margin-bottom: 30px !important; 
-        position: relative !important;
-        top: auto !important;
-        transform: none !important; 
-        opacity: 1 !important; 
-        animation: appear 1s forwards !important;
-        
-        margin-left: auto !important;
-        margin-right: auto !important;
-        /* não quebrar linha */
-        width: clamp(120px, 30%, 30%) !important; 
-        
-        display: block !important;
-    }
-
-    /* imagem prof circular*/
-    #dario {
-        order: 2 !important;
-        margin-top: 25px !important;
-        margin-bottom: 25px !important;
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        
-        /* ajuste de tamanho da imagem para mobile */
-        max-width: 60vw !important;
-        height: auto !important;
-        /* sei lá o que isso faz, só sei que precisa */
-        display: block !important;
-    }
-
-    /* nome */
-    #name {
-        order: 3 !important;
-        animation: appear 1s forwards 0.2s !important;
-        transform: none !important;
-        margin-bottom: 15px !important;
-        text-align: center !important;
-        font-size: 32px !important; 
-        width: 90% !important; 
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: block !important;
-    }
-
-    /* (frase) */
-    #frase {
-        order: 4 !important;
-        margin-bottom: 40px !important;
-        text-align: center !important;
-        padding: 0 10px !important;
-        font-size: 16px !important;
-        width: 100% !important;
-        display: block !important;
-    }
-
-    /* 5. botão "next page" */
-    button {
-        order: 5 !important;
-        margin-bottom: 60px !important;
-        padding: 10px 30px !important;
-        font-size: 20px !important;
-        display: block !important;
-    }
-
-    .navbtn, .teaching-wrapper {
-        width: auto !important; /* botão com tamanho exato do texto */
-        height: auto !important; 
-        padding: 8px 10px !important;
-        
-        /* texto */
-        font-size: 12px !important;
-        font-weight: 700 !important;
-        text-shadow: none !important;
-        
-        background-color: rgba(255,255,255,0.1);
-        border-radius: 5px;
-        
-        display: inline-block; /* fica na linha??? */
-        margin: 0 !important;
-    }
-    
-    /* mobile dropdowns */
-    .teaching-dropdown {
-        top: 100% !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 140px !important;
-    }
-
-    #name, #intro, #frase, .title, #phoneNumber, .containerSubtitle {
-        text-shadow: none !important; 
-
-        text-shadow: 1px 1px 2px rgba(0,0,0,1.5) !important; 
-    }
-    
-    
-
-    #name {
-        font-size: 32px !important; 
-    }
-
-    /* resetando posicionamento fixo (se não fica tudo congelado... maldita implementação deprecated pra PC */
-    /* fixed' para 'relative' ou 'static' */
-    .imagem, 
-    article, 
-    .video, 
-    #ytvideo, 
-    #ytvideo2, 
-    #ytvideo3,
-    .circle-video,
-    .title,
-    .containerGeralInfos {
-        position: relative !important; /*isso vence o estilo de inline do JS*/
-        top: auto !important;
-        left: auto !important;
-        transform: none !important; 
-        margin: 20px auto !important; 
-        width: 90% !important;
-        max-width: 100% !important;
-        min-width: 0 !important; /* SEM limites mínimos*/
-    }
-
-    /* IMAGEM da Home (acima do texto) */
-    .imagem {
-        margin-top: 20px !important;
-        width: 60vw !important; 
-        max-width: 250px !important;
-        border: 5px solid white !important; 
-    }
-
-    /* Dario 1 (Home) e Dario 2 (About) */
-    #dario, .dario2 {
-        /* Garante que a animação inicial não esconda a imagem permanentemente */
-        animation: appear 1s forwards !important; 
-    }
-
-    article {
-        text-align: center; 
-        padding: 0 15px;
-    }
-
-    /* títulos/textos */
-    #intro {
-        font-size: 18px;
-        margin: 0 auto 10px auto !important;
-    }
-
-    #name {
-        font-size: 36px; 
-        line-height: 1.2;
-        margin-bottom: 15px;
-    }
-
-    #frase {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .description {
-        font-size: 16px; 
-        text-align: justify; 
-        width: 100% !important;
-    }
-
-    /* odeio vídeos */
-    #ytvideo, #ytvideo2, #ytvideo3, .video {
-        height: auto !important;
-        aspect-ratio: 16/9 !important; 
-    }
-    
-    .circle-video {
-        width: 60vw !important;
-        border-radius: 50% !important; 
-        aspect-ratio: 1/1 !important;
-    }
-    /*
-    =======================
-    ABA DE CONTATOS
-    ======================= */
-    .containerGeralInfos {
-        position: relative !important; /* para permitir scroll */
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
-        
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        
-        width: 100% !important;
-        height: auto !important;
-        margin-top: 40px !important;
-        padding-bottom: 50px !important; 
-        padding-left: 0;
-        gap: 15vh !important;
-    }
-
-    .containerInfo {
-        width: 80% !important; /* para ver o fundo */
-        max-width: 350px !important; /* pra tablets? alguém ainda usa tablets hoje em dia pra navegar? */
-        height: auto !important;
-        min-height: auto !important; /* remover altura mínima fixa pra versão PC (se tiver)*/
-        gap: 10px;
-        
-        /* cleaning */
-        border-radius: 20px !important;
-        padding: 25px 15px !important; 
-        background-color: rgba(4, 140, 107, 0.85) !important; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important; 
-        
-        /* centralização */
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important; 
-    }
-
-    .containerSubtitle {
-        width: auto !important; /* depende do texto */
-        min-width: 150px !important;
-        margin-top: -40px !important; /*efeito "flutuar" "sai (um pouquinho "pra fora") do card"*/
-        margin-bottom: 20px !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.5) !important;
-    }
-
-    .redeSocial {
-        width: 100%;
-        justify-content: flex-start;
-        padding-left: 20px;
-    }
-
-    .textoredesocial {
-        font-size: 14px !important; /* aumento da versão Desktop para leitura */
-        text-align: left;
-        border: none !important;
-        padding-top: 0 !important;
-        margin-left: 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    .logo {
-        width: 35px !important;
-        height: 35px !important;
-        padding: 0 !important;
-    }
-    
-    #phoneNumber {
-        font-size: 20px !important;
-        margin-top: 10px !important;
-        margin-bottom: 10px !important;
-    }
-
-    /*
-    =================
-    TEACHING OVERVIEW
-    ================= */
-    .teachingTitle {
-        /* posição */
-        position: relative !important;
-        top: auto !important;
-        transform: none !important;
-        left: auto !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        
-        margin-top: 20vh !important; 
-        margin-bottom: 30px !important;
-        
-        /* box */
-        width: 85% !important;
-        text-align: center !important;
-        font-size: 26px !important;
-        font-weight: 700 !important;
-        color: white !important;
-        
-        /* glassmorphism? */
-        background-color: rgba(30, 45, 60, 0.4) !important; 
-        backdrop-filter: blur(5px) !important;
-        
-        padding: 20px 10px !important;
-        
-        /* bordas */
-        border-radius: 15px !important;
-        border: 1.5px solid rgba(255,255,255,0.1) !important; /* mini borda (mini boi)*/
-        border-bottom: 4px solid #07b98e !important;
-        
-        /* sombreamento pra profundidade */
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
-        
-        display: block !important;
-    }
-
-    /* ajuste do vídeo (#ytvideo) */
-    #ytvideo {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
-        
-        /* Tamanho responsivo */
-        width: 90% !important;
-        min-width: 0 !important;
-        aspect-ratio: 16/9 !important;
-        height: auto !important;
-        
-        /* margem inferior para não colar no fim da tela se ela for pequena */
-        margin-bottom: 50px !important; 
-        
-        border: 3px solid white !important;
-        border-radius: 15px !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
-        
-        display: block !important;
-    }
-
-    .circle-video {
-        aspect-ratio: 1/1 !important;
-        object-fit:fill !important;
-        
-        border: 5px solid white;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        position: fixed;
-        top: max(120px,55%);
-        left: 68%;
-        transform: translate(-50%, -50%);
-        width: 25vw; 
-    }
+.next-page-btn {
+    background-color: #07b98e;
+    color: white;
+    font-size: 22px;
+    font-weight: 900;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 2px solid #07b98e;
+    transition: background-color 0.2s, color 0.2s;
+    opacity: 0;
+    animation: appear 1.2s forwards;
+    animation-delay: 0.5s; 
+    margin-top: 10px;
+    display: block;
 }
 
+.next-page-btn:hover {
+    cursor: pointer;
+    background-color: #00765a;
+    color: rgb(211, 211, 211);
+}
 
+.center-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
 
-/*
-===============================
-ESTILOS MENU MOBILE (Hamburger)
-===============================
-*/
+#contact-footer {
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #222;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    transition: bottom 0.4s ease-in-out;
+    z-index: 999;
+}
 
-/* esconder (não precisa elementos mobile no PC) */
+#contact-footer.visible { bottom: 0; }
+
+/* ficar escondido em desktop*/
 .mobile-menu-icon, .mobile-sidebar, .overlay-backdrop {
     display: none;
-}
-
-@media only screen and (max-width: 768px) {
-    
-    .desktop-nav {
-        display: none !important;
-    }
-
-    /* botão abrir menu */
-    .mobile-menu-icon {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 35px;
-        height: 25px;
-        position: fixed;
-        top: 25px;
-        right: 25px;
-        z-index: 1001;
-        cursor: pointer;
-    }
-
-    .mobile-menu-icon span {
-        display: block;
-        height: 3px;
-        width: 100%;
-        background-color: white; /* cor dos tracinhos */
-        border-radius: 3px;
-        box-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* contraste */
-    }
-
-    /* Sidebar */
-    .mobile-sidebar {
-        display: block;
-        position: fixed;
-        top: 0;
-        right: 0; /* na direita */
-        width: 80%;
-        height: 100vh; /* altura total */
-        background: linear-gradient(180deg, #3e5068 0%, #2c3e50 100%);
-        z-index: 1002;
-        transform: translateX(100%); /*começa escondido*/
-        transition: transform 0.3s ease-in-out;
-        padding-top: 60px;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-        overflow-y: auto;
-    }
-
-    .mobile-sidebar.open {
-        transform: translateX(0); /* desliza para dentro*/
-        overflow-y: auto;
-    }
-
-    /* fundo escuro */
-    .overlay-backdrop {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.6);
-        z-index: 1000; /* atrás do menu mas na frente do site */
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .overlay-backdrop.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* links no Menu */
-    .sidebar-header {
-        position: absolute;
-        top: 20px;
-        right: 25px;
-    }
-
-    .close-btn {
-        color: white;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .sidebar-links {
-        display: flex;
-        flex-direction: column;
-        padding: 0 30px;
-    }
-
-    .mob-link {
-        color: white;
-        font-size: 16px;
-        font-weight: 700;
-        padding: 13px 0; /* espaçamento entre os links*/
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        cursor: pointer;
-        transition: color 0.2s;
-    }
-
-    .mob-link:hover {
-        color: #07b98e;
-    }
-
-    .mob-submenu {
-        display: none; /* padrão */
-        padding-left: 20px;
-        background-color: rgba(0,0,0,0.1);
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .mob-submenu div {
-        color: #ddd;
-        font-size: 16px;
-        padding: 12px 0;
-        cursor: pointer;
-    }
-
-    /* Classe para mostrar submenu ao clicar */
-    .show-submenu {
-        display: block;
-    }
-
-    #spacer {
-        height: clamp(30px, 60vw, 150px);
-    }
-
-
-    /* CARROSSEL VERSÃO MOBILEEEEEE*/
-
-    #testimony-page-title-mobile {
-        margin-top: 10px !important;
-        margin-bottom: 0 !important;
-    }
-    
-    .carousel-container {
-        width: 90% !important; 
-        height: 75vh !important;
-        margin-top: 20px !important;
-        border: none !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
-        backdrop-filter: none !important;
-    }
-
-    .testimonial-media {
-        max-height: 80% !important;
-    }
-    
-    iframe.testimonial-media {
-        width: 100% !important; /* vídeo ocupa largura total do slide (apenas mob)*/
-    }
-
-    .carousel-btn {
-        background-color: rgba(0,0,0,0.5) !important; /* discreto */
-        padding: 10px 15px !important;
-        border-radius: 50% !important; /* why not ROUND */
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 18px !important;
-    }
-    
-    .prev-btn { left: 0 !important; }
-    .next-btn { right: 0 !important; }
-    
-    .perf-nav-btn {
-        margin-bottom: 0 !important;
-        width: 50px !important;
-        height: 50px !important;
-        justify-content: center;
-    }
-
-    /* =========================
-       PERFORMANCE NO MOBILE
-       ========================= */
-    
-    .perf-nav-container {
-        margin-top: 120px !important; /* Espaço para não colar no topo */
-        margin-bottom: 20px !important;
-    }
-
-    .perf-category-title {
-        font-size: 20px !important;
-        padding: 15px 20px !important;
-        width: 80% !important; /* Título largo e bonito */
-        min-width: 0 !important;
-    }
-
-    /* Grid vira Carrossel Horizontal */
-    .perf-video-grid {
-        display: flex !important;
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory;
-        gap: 15px !important;
-        width: 100% !important;
-        padding-bottom: 20px !important;
-        padding-left: 20px !important; 
-        padding-right: 20px !important;
-        justify-content: flex-start !important;
-        
-        /* Esconde scrollbar */
-        scrollbar-width: none; 
-    }
-    
-    .perf-video-grid::-webkit-scrollbar { display: none; }
-
-    .perf-video-card {
-        min-width: 75vw !important; /* Efeito Netflix */
-        scroll-snap-align: center;
-        margin: 0 !important;
-    }
-
-    /* BOTÕES NO MOBILE (A Mágica Acontece Aqui) */
-    .perf-buttons-container {
-        position: relative !important; /* Volta ao fluxo normal */
-        top: auto !important;
-        width: 100% !important;
-        gap: 40px !important; /* Espaço entre as setas */
-        margin-bottom: 80px !important; /* Espaço no rodapé */
-        pointer-events: auto !important;
-    }
-
-    .perf-nav-btn {
-        background-color: rgba(7, 185, 142, 0.8) !important; /* Verde mais visível */
-        width: 60px !important; /* Botões maiores para dedo */
-        height: 60px !important;
-        font-size: 24px !important;
-        border: none !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
-    }
-
-    .video-modal-content {
-        width: 95% !important;
-    }
-    .video-close-btn {
-        top: -50px;
-        right: 0;
-    }
 }

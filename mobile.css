@@ -1,0 +1,686 @@
+@media only screen and (max-width: 768px) {
+
+    .desktop-nav {
+        display: none !important;
+    }
+
+    .mobile-menu-icon, .mobile-sidebar, .overlay-backdrop {
+        display: block;
+    }
+
+    body {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 40px; 
+        padding-left: 5% !important;
+        width: 90%;
+        overflow-y: auto;
+    }
+
+    /* menu (header) */
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: 5px;
+        padding: 10px 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /*
+    ======
+     HOME
+    ====== */
+
+    main {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding-top: 50px !important; 
+
+    }
+
+    /*
+    article precisa sumir pra que os filhos obedeçam a ordem do main 
+    pra poder usar ordem
+    */
+    article {
+        display: contents !important;
+    }
+
+    /* "Welcome To" (intro) */
+    #intro {
+        order: 1 !important;
+        margin-top: 0 !important; /* margin=0 porque padding já dá espaço */
+        margin-bottom: 30px !important; 
+        position: relative !important;
+        top: auto !important;
+        transform: none !important; 
+        opacity: 1 !important; 
+        animation: appear 1s forwards !important;
+        
+        margin-left: auto !important;
+        margin-right: auto !important;
+        /* não quebrar linha */
+        width: clamp(120px, 30%, 30%) !important; 
+        
+        display: block !important;
+    }
+
+    /* imagem prof circular*/
+    #dario {
+        order: 2 !important;
+        margin-top: 25px !important;
+        margin-bottom: 25px !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        
+        /* ajuste de tamanho da imagem para mobile */
+        max-width: 60vw !important;
+        height: auto !important;
+        /* exibir ocupando toda faixa? */
+        display: block !important;
+    }
+
+    /* nome */
+    #name {
+        order: 3 !important;
+        animation: appear 1s forwards 0.2s !important;
+        transform: none !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+        font-size: 32px !important; 
+        width: 90% !important; 
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block !important;
+    }
+
+    /* (frase) */
+    #frase {
+        order: 4 !important;
+        margin-bottom: 40px !important;
+        text-align: center !important;
+        padding: 0 10px !important;
+        font-size: 16px !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* botão "next page" */
+    button {
+        order: 5 !important;
+        margin-bottom: 60px !important;
+        padding: 10px 30px !important;
+        font-size: 20px !important;
+        display: block !important;
+    }
+
+    .navbtn, .teaching-wrapper {
+        width: auto !important; /* botão com tamanho exato do texto */
+        height: auto !important; 
+        padding: 8px 10px !important;
+        
+        /* texto */
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        text-shadow: none !important;
+        
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 5px;
+        
+        display: inline-block; /* fica na linha??? */
+        margin: 0 !important;
+    }
+    
+    /* mobile dropdowns */
+    .teaching-dropdown {
+        top: 100% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 140px !important;
+    }
+
+    #name, #intro, #frase, .title, #phoneNumber, .containerSubtitle {
+        text-shadow: none !important; 
+
+        text-shadow: 1px 1px 2px rgba(0,0,0,1.5) !important; 
+    }
+    
+    
+
+    #name {
+        font-size: 32px !important; 
+    }
+
+    /* resetando posicionamento fixo (se não fica tudo congelado... maldita implementação deprecated pra PC */
+    /* fixed' para 'relative' ou 'static' */
+    .imagem, 
+    article, 
+    .video, 
+    #ytvideo, 
+    #ytvideo2, 
+    #ytvideo3,
+    .circle-video,
+    .title,
+    .containerGeralInfos {
+        position: relative !important; /*isso vence o estilo de inline do JS*/
+        top: auto !important;
+        left: auto !important;
+        transform: none !important; 
+        margin: 20px auto !important; 
+        width: 90% !important;
+        max-width: 100% !important;
+        min-width: 0 !important; /* SEM limites mínimos*/
+    }
+
+    /* IMAGEM da Home (acima do texto) */
+    .imagem {
+        margin-top: 20px !important;
+        width: 60vw !important; 
+        max-width: 250px !important;
+        border: 5px solid white !important; 
+    }
+
+    /* Dario 1 (Home) e Dario 2 (About) */
+    #dario, .dario2 {
+        /* garante que a animação inicial não esconda a imagem permanentemente */
+        animation: appear 1s forwards !important; 
+    }
+
+    article {
+        text-align: center; 
+        padding: 0 15px;
+    }
+
+    /* títulos/textos */
+    #intro {
+        font-size: 18px;
+        margin: 0 auto 10px auto !important;
+    }
+
+    #name {
+        font-size: 36px; 
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    #frase {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: 16px; 
+        text-align: justify; 
+        width: 100% !important;
+    }
+
+    /* odeio vídeos */
+    #ytvideo, #ytvideo2, #ytvideo3, .video {
+        height: auto !important;
+        aspect-ratio: 16/9 !important; 
+    }
+    
+    .circle-video {
+        width: 60vw !important;
+        border-radius: 50% !important; 
+        aspect-ratio: 1/1 !important;
+    }
+    /*
+    ================
+    ABA DE CONTATOS
+    ================ */
+    .containerGeralInfos {
+        position: relative !important; /* para permitir scroll */
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        
+        width: 100% !important;
+        height: auto !important;
+        margin-top: 40px !important;
+        padding-bottom: 50px !important; 
+        padding-left: 0;
+        gap: 15vh !important;
+    }
+
+    .containerInfo {
+        width: 80% !important; /* para ver o fundo */
+        max-width: 350px !important; /* pra tablets? alguém ainda usa tablets hoje em dia pra navegar? */
+        height: auto !important;
+        min-height: auto !important; /* remover altura mínima fixa pra versão PC (se tiver)*/
+        gap: 10px;
+        
+        /* cleaning */
+        border-radius: 20px !important;
+        padding: 25px 15px !important; 
+        background-color: rgba(4, 140, 107, 0.85) !important; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important; 
+        
+        /* centralização */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; 
+    }
+
+    .containerSubtitle {
+        width: auto !important; /* depende do texto */
+        min-width: 150px !important;
+        margin-top: -40px !important; /*efeito "flutuar" "sai (um pouquinho "pra fora") do card"*/
+        margin-bottom: 20px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.5) !important;
+    }
+
+    .redeSocial {
+        width: 100%;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+
+    .textoredesocial {
+        font-size: 14px !important; /* aumento da versão Desktop para leitura */
+        text-align: left;
+        border: none !important;
+        padding-top: 0 !important;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        width: 35px !important;
+        height: 35px !important;
+        padding: 0 !important;
+    }
+    
+    #phoneNumber {
+        font-size: 20px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /*
+    =================
+    TEACHING OVERVIEW
+    ================= */
+    .teachingTitle {
+        /* posição */
+        position: relative !important;
+        top: auto !important;
+        transform: none !important;
+        left: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        
+        margin-top: 20vh !important; 
+        margin-bottom: 30px !important;
+        
+        /* box */
+        width: 85% !important;
+        text-align: center !important;
+        font-size: 26px !important;
+        font-weight: 700 !important;
+        color: white !important;
+        
+        /* glassmorphism? */
+        background-color: rgba(30, 45, 60, 0.4) !important; 
+        backdrop-filter: blur(5px) !important;
+        
+        padding: 20px 10px !important;
+        
+        /* bordas */
+        border-radius: 15px !important;
+        border: 1.5px solid rgba(255,255,255,0.1) !important; /* mini borda (mini boi mini boi mini boiboi)*/
+        border-bottom: 4px solid #07b98e !important;
+        
+        /* sombreamento pra profundidade */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+        
+        display: block !important;
+    }
+
+    /* ajuste do vídeo (#ytvideo) */
+    #ytvideo {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        
+        /* tamanho responsivo (depois de fazer isso tudo em alguns dias enquanto em finals week, responsivo vai ser minha depressão)*/
+        /* finals week? or my final week? Stay tuned to know! */
+        width: 90% !important;
+        min-width: 0 !important;
+        aspect-ratio: 16/9 !important;
+        height: auto !important;
+        
+        /* margem inferior para não colar no fim da tela se ela for pequena */
+        margin-bottom: 50px !important; 
+        
+        border: 3px solid white !important;
+        border-radius: 15px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+        
+        display: block !important;
+    }
+
+    .circle-video {
+        aspect-ratio: 1/1 !important;
+        object-fit:fill !important;
+        
+        border: 5px solid white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        position: fixed;
+        top: max(120px,55%);
+        left: 68%;
+        transform: translate(-50%, -50%);
+        width: 25vw; 
+    }
+    /*
+    ===============================
+    ESTILOS MENU MOBILE (Hamburger)
+    ===============================
+    */
+
+    .desktop-nav {
+        display: none !important;
+    }
+
+    /* botão abrir menu */
+    .mobile-menu-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 35px;
+        height: 25px;
+        position: fixed;
+        top: 25px;
+        right: 25px;
+        z-index: 1001;
+        cursor: pointer;
+    }
+
+    .mobile-menu-icon span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: white; /* cor dos tracinhos */
+        border-radius: 3px;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* contraste */
+    }
+
+    /* Sidebar */
+    .mobile-sidebar {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0; /* na direita */
+        width: 80%;
+        height: 100vh; /* altura total */
+        background: linear-gradient(180deg, #3e5068 0%, #2c3e50 100%);
+        z-index: 1002;
+        transform: translateX(100%); /*começa escondido*/
+        transition: transform 0.3s ease-in-out;
+        padding-top: 60px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        overflow-y: auto;
+    }
+
+    .mobile-sidebar.open {
+        transform: translateX(0); /* desliza para dentro*/
+        overflow-y: auto;
+    }
+
+    /* fundo escuro */
+    .overlay-backdrop {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        z-index: 1000; /* atrás do menu mas na frente do site */
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .overlay-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* links no Menu */
+    .sidebar-header {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+    }
+
+    .close-btn {
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .sidebar-links {
+        display: flex;
+        flex-direction: column;
+        padding: 0 30px;
+    }
+
+    .mob-link {
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 13px 0; /* espaçamento entre os links*/
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .mob-link:hover {
+        color: #07b98e;
+    }
+
+    .mob-submenu {
+        display: none; /* padrão */
+        padding-left: 20px;
+        background-color: rgba(0,0,0,0.1);
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .mob-submenu div {
+        color: #ddd;
+        font-size: 16px;
+        padding: 12px 0;
+        cursor: pointer;
+    }
+
+    /* Classe para mostrar submenu ao clicar */
+    .show-submenu {
+        display: block;
+    }
+
+    #spacer {
+        height: clamp(30px, 60vw, 150px);
+    }
+
+
+    /* CARROSSEL VERSÃO MOBILEEEEEE*/
+
+    #testimony-page-title-mobile {
+        margin-top: 10px !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .carousel-slide {
+        /* no celular, empilha: texto embaixo */
+        flex-direction: column-reverse; 
+        padding: 20px;
+        padding-bottom: 40px;
+        gap: 15px;
+        justify-content: start;
+        
+        overflow-y: visible !important; 
+        height: auto !important; 
+    }
+
+    .slide-media-wrapper {
+        flex: none; /* no automatic size */
+        width: 100%;
+        height: 50vh; /* altura fixa celular */
+    }
+
+    .slide-text-content {
+        flex: none;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .slide-desc {
+        text-align: center;
+        font-size: 16px;   
+    }
+
+    .carousel-container {
+        width: 90% !important; 
+        height: auto !important;
+        min-height: 60vh !important;
+
+        margin-top: 20px !important;
+        border: none !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+
+        overflow: visible !important;
+    }
+    
+    .testimonial-media, iframe.testimonial-media {
+        max-height: 50vh; 
+        width: 100%;
+    }
+
+    .carousel-btn {
+        background-color: rgba(0,0,0,0.5) !important; /* discreto */
+        padding: 10px 15px !important;
+        border-radius: 50% !important; /* why not ROUND */
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px !important;
+    }
+    
+    .prev-btn { left: 0 !important; }
+    .next-btn { right: 0 !important; }
+    
+    .perf-nav-btn {
+        margin-bottom: 0 !important;
+        width: 50px !important;
+        height: 50px !important;
+        justify-content: center;
+    }
+
+    /* =========================
+       PERFORMANCE NO MOBILE
+       ========================= */
+    
+    .perf-nav-container {
+        margin-top: 120px !important; /* Espaço para não colar no topo */
+        margin-bottom: 20px !important;
+    }
+
+    .perf-category-title {
+        font-size: 20px !important;
+        padding: 15px 20px !important;
+        width: 80% !important; /* Título largo e bonito */
+        min-width: 0 !important;
+    }
+
+    /* Grid vira Carrossel Horizontal */
+    .perf-video-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 15px !important;
+        width: 100% !important;
+        padding-bottom: 10px !important;
+        padding-left: 20px !important; 
+        padding-right: 20px !important;
+        justify-content: flex-start !important;
+        
+        /* Esconde scrollbar */
+        scrollbar-width: none; 
+    }
+    
+    .perf-video-grid::-webkit-scrollbar { display: none; }
+
+    .perf-video-card {
+        min-width: 75vw !important; /* Efeito Netflix */
+        scroll-snap-align: center;
+        margin: 0 !important;
+    }
+
+    /* BOTÕES NO MOBILE (A Mágica Acontece Aqui) */
+    .perf-buttons-container {
+        position: relative !important; /* Volta ao fluxo normal */
+        top: auto !important;
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 40px !important; /* Espaço entre as setas */
+        margin-bottom: 0 !important; /* Espaço no rodapé */
+        pointer-events: auto !important;
+    }
+
+    .perf-nav-btn {
+        background-color: rgba(7, 185, 142, 0.8) !important; /* Verde mais visível */
+        width: 60px !important; /* Botões maiores para dedo */
+        height: 60px !important;
+        font-size: 24px !important;
+        border: none !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    }
+
+    .video-modal-content {
+        width: 95% !important;
+    }
+    .video-close-btn {
+        top: -50px;
+        right: 0;
+    }
+
+    .next-page-btn {
+        margin: 30px auto 60px auto !important; /* Margem grande em baixo */
+        position: relative !important;
+        display: block !important;
+        width: fit-content !important;
+    }
+    
+    .mobile-menu-icon { display: flex; }
+    .overlay-backdrop { display: block; opacity: 0; visibility: hidden; }
+    .overlay-backdrop.active { opacity: 1; visibility: visible; }
+}
