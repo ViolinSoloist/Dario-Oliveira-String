@@ -133,6 +133,7 @@ function carregarSuzukiTriangle() {
 
     const Title = document.createElement('p');
     Title.classList.add("title", "slideLeftRightTitle");
+    Title.id = "triangle-title";
     Title.innerText = "The Suzuki Triangle";
     Title.style.whiteSpace = "nowrap";
     Title.style.overflowX = "visible";
