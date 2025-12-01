@@ -205,6 +205,9 @@ function carregarGroupClass() {
     const Video = document.createElement("iframe");
     Video.src = "https://www.youtube.com/embed/cfHJ5AWJ6Kw?autoplay=1";
     Video.id="ytvideo2";
+    Video.style.aspectRatio = "16/9";
+    Video.style.width = "38vw";
+    Video.style.left = "53%";
     
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
@@ -242,12 +245,10 @@ function carregarViolinLesson() {
     main.innerHTML = "";
     updateNavHighlight('teaching');
 
-    const Video = document.createElement("video");
-    Video.src = "src/virtual_lessons.mp4";
+    const Video = document.createElement("iframe");
+    Video.src = "https://www.youtube.com/embed/60UDYMsMdKM?autoplay=1";
     Video.classList.add("video");
-    Video.controls = true;
-
-    Video.style.width = "42%";
+    Video.style.aspectRatio = "16/9";
     Video.style.position = "fixed";
     Video.style.top = "50%";
     Video.style.left = "50%";
@@ -255,7 +256,7 @@ function carregarViolinLesson() {
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
-    Artc.style.top = "160px";
+    Artc.style.top = "19vh";
     Artc.style.left = "10vw";
     Artc.style.width = "33vw";
     Artc.style.minWidth = "200px";

@@ -545,9 +545,9 @@
     .carousel-slide {
         /* no celular, empilha: texto embaixo */
         flex-direction: column-reverse; 
-        padding: 20px;
+        padding: 1.2rem;
         padding-bottom: 40px;
-        gap: 15px;
+        gap: 1rem;
         justify-content: start;
         
         overflow-y: visible !important; 
@@ -560,6 +560,10 @@
         height: 50vh; /* altura fixa celular */
     }
 
+    .slide-title {
+        margin-top: 3rem;
+    }
+
     .slide-text-content {
         flex: none;
         width: 100%;
@@ -568,7 +572,7 @@
     
     .slide-desc {
         text-align: center;
-        font-size: 16px;   
+        font-size: 0.9rem;   
     }
 
     .carousel-container {
