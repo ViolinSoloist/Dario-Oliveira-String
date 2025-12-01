@@ -650,7 +650,7 @@ function renderPerformanceLayout(data, currentFuncName) {
     if(nextPageBtn) {
         const nextContainer = document.createElement('div');
         nextContainer.className = 'center-btn-container';
-        nextContainer.style.marginBottom = "50px";
+        nextContainer.style.marginBottom = "0";
         nextContainer.appendChild(nextPageBtn);
         main.appendChild(nextContainer);
     }
