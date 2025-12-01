@@ -684,3 +684,73 @@
     .overlay-backdrop { display: block; opacity: 0; visibility: hidden; }
     .overlay-backdrop.active { opacity: 1; visibility: visible; }
 }
+
+/* --- CORREÇÃO PARA CELULAR DEITADO (LANDSCAPE) --- */
+/* Aplica-se quando a altura é pequena, forçando layout vertical com scroll */
+
+@media only screen and (max-height: 500px) {
+
+    /* 1. Força o Main a ser flexível e permitir scroll */
+    main {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding-top: 10px !important;
+        padding-bottom: 50px !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-y: auto !important; /* Essencial para rolar a tela */
+    }
+
+    /* 2. Destrava o Título (remove o fixed do JS) */
+    .teachingTitle {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        
+        margin-top: 60px !important; /* Espaço para não ficar atrás do menu */
+        margin-bottom: 20px !important;
+        margin-left: auto !important;
+        
+        width: 80% !important;
+        min-width: 0 !important; /* Remove limite do desktop */
+    }
+
+    /* 3. Destrava o Vídeo e ajusta o tamanho */
+    #ytvideo {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        
+        /* Tamanho otimizado para landscape: não ocupar a tela toda */
+        width: 50vw !important; 
+        max-width: 450px !important;
+        aspect-ratio: 16/9 !important;
+        height: auto !important;
+        
+        margin-bottom: 20px !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5) !important;
+    }
+
+    /* 4. Destrava o Botão "Next Page" (O maior culpado) */
+    .center-btn-container {
+        position: relative !important; /* Tira o fixed bottom: 50px */
+        bottom: auto !important;
+        left: auto !important;
+        
+        margin-top: 10px !important;
+        margin-bottom: 40px !important;
+        padding-bottom: 20px !important;
+        
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    /* Garante que o menu hambúrguer apareça e o desktop suma */
+    .desktop-nav { display: none !important; }
+    .mobile-menu-icon { display: flex !important; }
+}
