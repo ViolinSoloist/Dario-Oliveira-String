@@ -316,6 +316,15 @@ function carregarTestimony() {
             In this video, he shares the exciting news of passing the "All-West" auditions for the first time—a prestigious regional recognition for young musicians.
             His smile says it all: discipline and consistency truly pay off!`,
             caption: 'Student Will celebrating his audition results'
+        },
+        {
+            type: 'image',
+            src: 'src/erik.jpg',
+            title: 'A Tribute in Code',
+            desc: `I am currently a Computer Science student at USP, but my journey with Dario began way back when I was just 10 years old. This website is more than a portfolio; it is a gesture of gratitude for his incredible humility, skill, and kindness over the years.
+
+            Dario doesn't just teach the violin; he builds character. Creating this platform was my way of honoring his professionalism and the profound impact he has had on my life, bridging my two passions: technology and music.`,
+            caption: 'Erik, student since age 10 & Creator of this website'
         }
     ];
 
