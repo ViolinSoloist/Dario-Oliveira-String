@@ -14,6 +14,7 @@ function carregarHome() {
 
     const Artc = document.createElement("article");
     Artc.style.marginTop = "13vh";
+    Artc.style.marginTop = "13dvh";
     Artc.innerHTML = `
         <p id="intro">Welcome To</p>
         <p id="name">Dario Oliveira</p>
@@ -91,6 +92,7 @@ function carregarTeachingPhy() {
 
     const Quotes = document.createElement('p');
     Quotes.classList.add('description');
+    Quotes.id = "frase2";
     Quotes.style.fontStyle = "italic";
     Quotes.style.color = "white";
     Quotes.style.fontSize = "clamp(10px, min(1.4vmax, 3vmin), 1.5vmax)";
