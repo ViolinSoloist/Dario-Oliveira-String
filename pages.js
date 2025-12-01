@@ -107,7 +107,7 @@ function carregarTeachingPhy() {
     // NEXT BTN AUTO MÁTICO YAY
     const nextBtn = createNextButton('carregarTeachingPhy');
     nextBtn.style.marginTop = "max(1.1vh,1rem)";
-    
+
     main.appendChild(Artc);
     main.appendChild(Img);
     Artc.appendChild(Title);
@@ -471,7 +471,7 @@ function carregarTeacherPerformance() {
 function carregarStudentPerformance() {
     document.body.style.backgroundImage = 'url("src/fundo2.png")'; 
     main.innerHTML = ""; 
-    updateNavHighlight('performance');
+    updateNavHighlight('teaching');
 
     // dos alunos
     const performanceData = [

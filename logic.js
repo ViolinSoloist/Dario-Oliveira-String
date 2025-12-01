@@ -1,10 +1,6 @@
-/* logic.js */
-
-// global body main
 const body = document.querySelector("body");
 const main = document.querySelector("main");
 
-// navmap (usado para colocar efeito de brilho na janela selecionada)
 const navMap = {
     'home': document.getElementById('home'),
     'about': document.getElementById('about'),
@@ -14,7 +10,6 @@ const navMap = {
 };
 
 /* FLUXO DE PÁGINAS */
-/* BLOCO SENSÍVEL À MUDANÇA DE ESTRUTURA DE INFORMAÇÃO */
 const pageFlow = [
     { id: 'home', funcName: 'carregarHome' },
     { id: 'about', funcName: 'carregarAboutme' },
@@ -23,9 +18,9 @@ const pageFlow = [
     { id: 'teaching', funcName: 'carregarTeachingPriorities' },
     { id: 'teaching', funcName: 'carregarGroupClass' },
     { id: 'teaching', funcName: 'carregarViolinLesson' },
+    { id: 'teaching', funcName: 'carregarStudentPerformance' },
     { id: 'teaching', funcName: 'carregarTestimony' },
     { id: 'performance', funcName: 'carregarTeacherPerformance' },
-    { id: 'performance', funcName: 'carregarStudentPerformance' },
     { id: 'contact', funcName: 'carregarContato' }
 ];
 
@@ -60,7 +55,7 @@ function navegarPara(nomeFuncao) {
     closeMenu();
 }
 
-// Menu Mobile (Hamburguer aidebar)
+// menu mobile (hamburguer)
 const mobileBtn = document.getElementById('mobile-menu-btn');
 const sidebar = document.getElementById('mobile-sidebar');
 const closeBtn = document.getElementById('close-sidebar');
@@ -91,7 +86,7 @@ submenus.forEach(link => {
     });
 });
 
-/* lógica: footer de contato dev site (eu hahahaha) */
+/* footer de contato dev (eu hahahaha)*/
 const contactFooter = document.createElement('div');
 contactFooter.id = 'contact-footer';
 contactFooter.textContent = 'for website problems or suggestions, contact: erikmschung@usp.br';
@@ -106,13 +101,9 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-/*
-==============================
-DROPDOWN (EXECUTA AO CARREGAR)
-============================== */
+/* INICIALIZAÇÃO */
 document.addEventListener('DOMContentLoaded', () => {
     
-    // DROPDOWN TEACHING
     const teachingBtnOriginal = document.getElementById('teaching');
     if (teachingBtnOriginal) {
         const teachingWrapper = document.createElement('div');
@@ -123,12 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const teachingDropdown = document.createElement('div');
         teachingDropdown.className = 'teaching-dropdown';
+
         teachingDropdown.innerHTML = `
         <div class="dropdown-option" data-page="philosophy">Teaching Philosophy</div>
         <div class="dropdown-option" data-page="triangle">The Suzuki Triangle</div>
         <div class="dropdown-option" data-page="priority">Teaching Overview</div>
         <div class="dropdown-option" data-page="group">Group Class</div>
         <div class="dropdown-option" data-page="violin">Violin Lesson Virtual</div>
+        <div class="dropdown-option" data-page="student">Students' Performances</div>
         <div class="dropdown-option" data-page="testimony">Students Stories</div>
         `;
         teachingWrapper.appendChild(teachingDropdown);
@@ -136,8 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
         teachingWrapper.addEventListener('click', (e) => {
             e.stopPropagation();
             teachingWrapper.classList.toggle('active');
-            // Fecha o outro se estiver aberto
-            if(navMap['performance']) navMap['performance'].classList.remove('active');
         });
 
         teachingDropdown.querySelectorAll('.dropdown-option').forEach(option => {
@@ -149,58 +140,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (page === 'priority') carregarTeachingPriorities();
                 else if (page === 'group') carregarGroupClass();
                 else if (page === 'violin') carregarViolinLesson();
+                else if (page === 'student') carregarStudentPerformance(); // Novo Link
                 else if (page === 'testimony') carregarTestimony();
                 teachingWrapper.classList.remove('active');
             });
         });
     }
 
-    // DROPDOWN PERFORMANCE ---
-    const perfBtnOriginal = document.getElementById('performance');
-    if (perfBtnOriginal) {
-        const perfWrapper = document.createElement('div');
-        perfWrapper.className = 'performance-wrapper navbtn'; 
-        
-        perfBtnOriginal.replaceWith(perfWrapper);
-        perfWrapper.appendChild(perfBtnOriginal);
-        
-        // atualiza navmap para o novo wrapper
-        navMap['performance'] = perfWrapper;
-
-        const perfDropdown = document.createElement('div');
-        perfDropdown.className = 'performance-dropdown'; 
-
-        perfDropdown.innerHTML = `
-        <div class="dropdown-option" data-page="teacher">Teacher's Performances</div>
-        <div class="dropdown-option" data-page="student">Students' Performances</div>
-        `;
-
-        perfWrapper.appendChild(perfDropdown);
-
-        perfWrapper.addEventListener('click', (e) => {
-            e.stopPropagation();
-            perfWrapper.classList.toggle('active');
-            // fecha teaching se aberto
-            if(navMap['teaching']) navMap['teaching'].classList.remove('active');
-        });
-
-        perfDropdown.querySelectorAll('.dropdown-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const page = e.target.dataset.page;
-
-                if (page === 'teacher') carregarTeacherPerformance();
-                else if (page === 'student') carregarStudentPerformance();
-                
-                perfWrapper.classList.remove('active');
-            });
-        });
+    if(navMap.performance) {
+        navMap.performance.addEventListener('click', carregarTeacherPerformance);
     }
 
-    // fechar ao clicar fora global
+    // fechar dropwdowns ao clicar fora
     document.addEventListener('click', () => {
         if(navMap['teaching']) navMap['teaching'].classList.remove('active');
-        if(navMap['performance']) navMap['performance'].classList.remove('active');
     });
 
     // event listeners
@@ -208,8 +161,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if(navMap.about) navMap.about.addEventListener('click', carregarAboutme);
     if(navMap.contact) navMap.contact.addEventListener('click', carregarContato);
 
-    // home (sempre que o site carrega, começa aqui)
-    // IMPLEMENT: talvez no futuro implemente poder compatilhar as páginas individuais do site usando URL ID
-    // mas por enquanto sempre vai começar em Home
     if (typeof carregarHome === 'function') carregarHome();
 });

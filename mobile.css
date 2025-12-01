@@ -630,60 +630,66 @@
         justify-content: center;
     }
 
-    /* =========================
-       PERFORMANCE NO MOBILE
-       ========================= */
+    /*
+    ======================
+    PERFORMANCE NO MOBILE
+    ====================== */
     
     .perf-nav-container {
-        margin-top: 120px !important; /* Espaço para não colar no topo */
+        margin-top: 120px !important; 
         margin-bottom: 20px !important;
     }
 
     .perf-category-title {
         font-size: 20px !important;
         padding: 15px 20px !important;
-        width: 80% !important; /* Título largo e bonito */
+        width: 80% !important; 
         min-width: 0 !important;
     }
 
-    /* Grid vira Carrossel Horizontal */
+    /* grid desktop vira carrossel horizontal no mobile*/
     .perf-video-grid {
         display: flex !important;
         overflow-x: auto !important;
         scroll-snap-type: x mandatory;
-        gap: 15px !important;
-        width: 100% !important;
-        padding-bottom: 10px !important;
-        padding-left: 20px !important; 
-        padding-right: 20px !important;
-        justify-content: flex-start !important;
         
-        /* Esconde scrollbar */
+        gap: 0.6rem !important; /* espaço entre vídeos */
+        width: 100% !important;
+        
+        /* 100 - 75 = 25, 25 / 2 = 12.5*/
+        padding: 0 12.5vw !important; 
+        padding-bottom: 20px !important;
+        
+        justify-content: flex-start !important;
         scrollbar-width: none; 
+        box-sizing: border-box !important; /* para padding não estourar a tela */
     }
     
     .perf-video-grid::-webkit-scrollbar { display: none; }
 
     .perf-video-card {
-        min-width: 75vw !important; /* Efeito Netflix */
+        /* SE MUDAR AQUI, MUDAR PADDING DE PERF-VIDEO-GRID TAMBÉM*/
+        min-width: 75vw !important;
+   
         scroll-snap-align: center;
         margin: 0 !important;
+        
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
     }
 
-    /* BOTÕES NO MOBILE (A Mágica Acontece Aqui) */
     .perf-buttons-container {
-        position: relative !important; /* Volta ao fluxo normal */
+        position: relative !important; 
         top: auto !important;
         width: 100% !important;
         justify-content: center !important;
-        gap: 40px !important; /* Espaço entre as setas */
-        margin-bottom: 0 !important; /* Espaço no rodapé */
+        gap: 40px !important; 
+        margin-bottom: 0 !important; 
         pointer-events: auto !important;
     }
 
     .perf-nav-btn {
-        background-color: rgba(7, 185, 142, 0.8) !important; /* Verde mais visível */
-        width: 60px !important; /* Botões maiores para dedo */
+        background-color: rgba(7, 185, 142, 0.8) !important; 
+        width: 60px !important;
         height: 60px !important;
         font-size: 24px !important;
         border: none !important;
@@ -699,7 +705,7 @@
     }
 
     .next-page-btn {
-        margin: 30px auto 60px auto !important; /* Margem grande em baixo */
+        margin: 30px auto 60px auto !important; 
         position: relative !important;
         display: block !important;
         width: fit-content !important;
