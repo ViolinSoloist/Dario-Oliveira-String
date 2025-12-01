@@ -215,6 +215,8 @@ function carregarGroupClass() {
     const Title = document.createElement('p');
     Title.classList.add("title","slideLeftRightTitle");
     Title.innerText = "Group Class";
+    Title.style.whiteSpace = "nowrap";
+    Title.style.overflowX = "visible";
 
     const Aboutmedescrp = document.createElement('p');
     Aboutmedescrp.classList.add('description');
