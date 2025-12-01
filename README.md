@@ -16,6 +16,8 @@ O site reúne:
 
     Trechos de aulas (individuais, em grupo, online e presenciais).
 
+    Depoimentos de alunos.
+    
     Meios de contato e redes sociais.
 
 🛠️ Tecnologias Utilizadas
@@ -28,20 +30,12 @@ O projeto foi desenvolvido com foco no aprendizado dos fundamentos da web, sem o
 
     JavaScript (Vanilla)
 
-🚧 Estado do Desenvolvimento
-
-    Status: Em desenvolvimento (WIP)
-
-O foco inicial foi o design e a aparência para telas grandes (Desktop).
-
-    Desktop: Funcional e visualmente completo.
-
-    Mobile: Também funcional e quase 100% visualmente completo. 
+O foco inicial foi o design e a aparência para telas grandes (Desktop) e telas de celular.
 
 📱 Navegação
 
 A navegação foi pensada para ser fluida e intuitiva:
 
-    Desktop: Header fixo no topo com botões de navegação direta.
+    Desktop: Header fixo no topo com botões de navegação direta. Vídeos de performances exibidos em páginas, com cada página podendo conter mais de um vídeo, usando grid.
 
-    Mobile: O header adapta-se para um Hamburger Menu (em desenvolvimento), garantindo a acessibilidade em telas menores.
+    Mobile: O header adapta-se para um Hamburger Menu (em desenvolvimento), garantindo a acessibilidade em telas menores. Vídeo de performances desenvolvido em estilo carrossel, com função peek.
