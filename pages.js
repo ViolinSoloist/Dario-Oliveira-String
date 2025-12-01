@@ -106,7 +106,8 @@ function carregarTeachingPhy() {
 
     // NEXT BTN AUTO MÁTICO YAY
     const nextBtn = createNextButton('carregarTeachingPhy');
-
+    nextBtn.style.marginTop = "max(1.1vh,1rem)";
+    
     main.appendChild(Artc);
     main.appendChild(Img);
     Artc.appendChild(Title);
