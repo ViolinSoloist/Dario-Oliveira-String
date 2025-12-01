@@ -121,6 +121,10 @@
         display: block !important;
     }
 
+    #frase2 {
+        font-size: 1rem !important;
+    }
+
     /* botão "next page" */
     button {
         order: 5 !important;
