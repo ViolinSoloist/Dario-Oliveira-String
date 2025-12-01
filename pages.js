@@ -13,6 +13,7 @@ function carregarHome() {
     Img.classList.add('imagem', 'dario');
 
     const Artc = document.createElement("article");
+    Artc.style.marginTop = "13vh";
     Artc.innerHTML = `
         <p id="intro">Welcome To</p>
         <p id="name">Dario Oliveira</p>
@@ -74,7 +75,7 @@ function carregarTeachingPhy() {
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
-    Artc.style.top = "120px";
+    Artc.style.top = "18vh";
     Artc.style.left = "10vw";
     Artc.style.width = "43vw";
     Artc.style.minWidth = "200px";
@@ -92,8 +93,9 @@ function carregarTeachingPhy() {
     Quotes.classList.add('description');
     Quotes.style.fontStyle = "italic";
     Quotes.style.color = "white";
-    Quotes.style.fontSize = "clamp(20px,1.8vw,1.8vw)";
+    Quotes.style.fontSize = "clamp(10px, min(1.4vmax, 3vmin), 1.5vmax)";
     Quotes.style.margin = 0;
+    Quotes.style.padding = "2vh 0";
     Quotes.innerText = `
         "Tell me and I forget.
         Teach me and I remember.
@@ -123,7 +125,6 @@ function carregarSuzukiTriangle() {
 
     const Artc = document.createElement("article");
     Artc.style.position = "fixed";
-    Artc.style.top = "130px";
     Artc.style.left = "14vw";
     Artc.style.width = "33vw";
     Artc.style.minWidth = "200px";
@@ -133,6 +134,7 @@ function carregarSuzukiTriangle() {
     Title.innerText = "The Suzuki Triangle";
     Title.style.whiteSpace = "nowrap";
     Title.style.overflowX = "visible";
+    Title.style.fontSize = "clamp(3rem, min(10vmin, 5.5vmax),75px)"
 
     const TriangleDesc = document.createElement('p');
     TriangleDesc.classList.add('description');
@@ -163,7 +165,7 @@ function carregarTeachingPriorities() {
     Title.style.position = "fixed";
     Title.style.top = "20vh";
     Title.style.marginLeft = "auto";
-    Title.style.minWidth = "380px";
+    Title.style.minWidth = "360px";
     Title.style.height = "3vh";
 
     const Video = document.createElement('iframe');
@@ -184,7 +186,7 @@ function carregarTeachingPriorities() {
         // vídeo é fixed => botão precisa ser fixed OU ter um posicionamento esperto (o que com certeza não tem)
         // ent whatever, fixed
         btnContainer.style.position = "fixed";
-        btnContainer.style.bottom = "50px";
+        btnContainer.style.bottom = "80px";
         btnContainer.style.left = "0";
         
         btnContainer.appendChild(nextBtn);
