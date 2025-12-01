@@ -185,6 +185,7 @@ function carregarTeachingPriorities() {
     if(nextBtn) {
         const btnContainer = document.createElement('div');
         btnContainer.className = 'center-btn-container';
+        btnContainer.id = 'btn-container-overview';
         // Ajuste fino para não sobrepor o vídeo fixo no Desktop
         // vídeo é fixed => botão precisa ser fixed OU ter um posicionamento esperto (o que com certeza não tem)
         // ent whatever, fixed
