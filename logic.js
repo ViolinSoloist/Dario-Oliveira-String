@@ -90,7 +90,7 @@ document.body.appendChild(contactFooter);
 
 document.addEventListener('mousemove', (e) => {
     const fromBottom = window.innerHeight - e.clientY;
-    if (fromBottom < 50) {
+    if (fromBottom < 30) {
         contactFooter.classList.add('visible');
     } else {
         contactFooter.classList.remove('visible');

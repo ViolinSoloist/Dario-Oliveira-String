@@ -161,8 +161,10 @@ function carregarTeachingPriorities() {
     Title.classList.add("title","teachingTitle");
     Title.innerText = "Teaching Overview";
     Title.style.position = "fixed";
-    Title.style.top = "140px";
-    Title.style.minWidth = "440px";
+    Title.style.top = "20vh";
+    Title.style.marginLeft = "auto";
+    Title.style.minWidth = "380px";
+    Title.style.height = "3vh";
 
     const Video = document.createElement('iframe');
     Video.id = "ytvideo";
@@ -285,7 +287,7 @@ function carregarTestimony() {
     carouselContainer.classList.add('carousel-container');
 
     // página sem título, carrossel ocupa um pouco mais de espaço vertical
-    carouselContainer.style.marginTop = "clamp(60px, 10vh, 100px)"; 
+    carouselContainer.style.marginTop = "clamp(10px, 2vh, 50px)"; 
 
     const prevBtn = document.createElement('button');
     prevBtn.classList.add('carousel-btn', 'prev-btn');
